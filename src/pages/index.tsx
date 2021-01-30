@@ -1,4 +1,4 @@
-import { Image, Flex, Heading } from '@chakra-ui/react';
+import { Image, Heading } from '@chakra-ui/react';
 import { Button, GradientCard } from '../components/CustomComponents';
 export default function Index() {
   return (
