@@ -1,6 +1,7 @@
 # Dota 2 Lobby Finder
 
-A bot that will act as a match maker using ingame lobbies. Focused at new playes
+A bot that will act as a match maker using ingame lobbies. Focused at new players.
+Find live version on [here](http://lobbyfinder.devinda.me/)
 
 ## Installation
 
