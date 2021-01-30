@@ -1,4 +1,6 @@
-import { Flex, Heading, Text, Button } from '@chakra-ui/react';
+import { Flex, Heading, Text } from '@chakra-ui/react';
+import Button from '../components/Button';
+import GradientCard from '../components/GradientCard';
 
 export default function roleSelection() {
   return (
@@ -11,16 +13,7 @@ export default function roleSelection() {
       <Heading fontWeight="400" color="white" fontSize={['35px', '48px']}>
         Select Your Roles
       </Heading>
-      <Flex
-        flexDirection="column"
-        justifyContent="space-between"
-        alignItems="center"
-        background="linear-gradient(179.99deg, #1D2D50 0.01%, #52057B 193.87%)"
-        padding="40px 32px"
-        borderRadius="30px"
-        w="311px"
-        h="352px"
-      >
+      <GradientCard h="352px" w="311px">
         <Text lineHeight="33px" fontSize="24px" color="white">
           Hard Support
         </Text>
@@ -36,20 +29,8 @@ export default function roleSelection() {
         <Text lineHeight="33px" fontSize="24px" color="white">
           Hard Carry
         </Text>
-      </Flex>
-      <Button
-        backgroundColor="pink"
-        size="lg"
-        h="70px"
-        w="260px"
-        borderRadius="30px"
-        fontSize="36px"
-        fontFamily="Montserrat"
-        fontWeight="normal"
-        color="white"
-      >
-        Search
-      </Button>
+      </GradientCard>
+      <Button>Search</Button>
     </Flex>
   );
 }

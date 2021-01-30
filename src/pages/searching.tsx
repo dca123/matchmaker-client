@@ -1,5 +1,5 @@
-import { Flex, Heading, Button, Image } from '@chakra-ui/react';
-
+import { Flex, Heading, Image } from '@chakra-ui/react';
+import { GradientCard, Button } from '../components/CustomComponents';
 export default function roleSelection() {
   return (
     <Flex
@@ -11,31 +11,10 @@ export default function roleSelection() {
       <Heading fontWeight="400" color="white" fontSize={['35px', '48px']}>
         Finding game
       </Heading>
-      <Flex
-        flexDirection="column"
-        justifyContent="space-between"
-        alignItems="center"
-        background="linear-gradient(179.99deg, #1D2D50 0.01%, #52057B 193.87%)"
-        padding="40px 32px"
-        borderRadius="30px"
-        w="311px"
-        h="352px"
-      >
+      <GradientCard w="311px" h="352px">
         <Image src="searchJug.gif" margin="0px 0 0 20px" />
-      </Flex>
-      <Button
-        backgroundColor="pink"
-        size="lg"
-        h="70px"
-        w="260px"
-        borderRadius="30px"
-        fontSize="36px"
-        fontFamily="Montserrat"
-        fontWeight="normal"
-        color="white"
-      >
-        Cancel
-      </Button>
+      </GradientCard>
+      <Button>Cancel</Button>
     </Flex>
   );
 }
