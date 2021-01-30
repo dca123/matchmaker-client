@@ -12,16 +12,29 @@ const breakpoints = createBreakpoints({
   lg: '64em',
   xl: '80em',
 });
-
+const colors = {
+  black: '#121C30',
+  blue: '#1D2D50',
+  purple: '#52057B',
+  pink: '#BC6FF1',
+};
 const theme = extendTheme({
-  colors: {
-    black: '#121C30',
-    blue: '#1D2D50',
-    purple: '#52057B',
-    pink: '#BC6FF1',
-  },
+  colors: colors,
   fonts,
   breakpoints,
+  components: {
+    Progress: {
+      parts: ['track', 'filledTrack'],
+      baseStyle: {
+        track: {
+          bgColor: colors.blue,
+        },
+        filledTrack: {
+          bgColor: colors.pink,
+        },
+      },
+    },
+  },
 });
 
 export default theme;
