@@ -1,4 +1,4 @@
-import { Flex, Heading, Text, Button, Image } from '@chakra-ui/react';
+import { Flex, Heading, Button, Image } from '@chakra-ui/react';
 
 export default function roleSelection() {
   return (
