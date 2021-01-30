@@ -17,13 +17,13 @@ export default function roleSelection() {
         <Text lineHeight="33px" fontSize="24px" color="white">
           Hard Support
         </Text>
-        <Text lineHeight="33px" fontSize="24px" color="white">
+        <Text lineHeight="33px" fontSize="24px" color="pink">
           Soft Support
         </Text>
         <Text lineHeight="33px" fontSize="24px" color="white">
           Offlane
         </Text>
-        <Text lineHeight="33px" fontSize="24px" color="white">
+        <Text lineHeight="33px" fontSize="24px" color="pink">
           Midlane
         </Text>
         <Text lineHeight="33px" fontSize="24px" color="white">
