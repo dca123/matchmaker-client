@@ -1,4 +1,4 @@
-import { Text, Heading, Flex, Progress } from '@chakra-ui/react';
+import { Heading, Flex, Progress } from '@chakra-ui/react';
 import { useRouter } from 'next/dist/client/router';
 import { TeamCard, PageHeading, Layout } from '../components/CustomComponents';
 
