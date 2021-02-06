@@ -1,15 +1,15 @@
-import { ChakraProvider, Flex } from '@chakra-ui/react'
+import { ChakraProvider, Flex } from '@chakra-ui/react';
 
-import theme from '../theme'
-import Fonts from '../theme/fonts'
-import { AppProps } from 'next/app'
+import theme from '../theme/theme';
+import Fonts from '../theme/fonts';
+import { AppProps } from 'next/app';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider resetCSS theme={theme}>
       <Fonts />
       <Flex
-        height="100vh"
+        minH="100vh"
         backgroundColor="black"
         justifyContent="center"
         alignItems="center"
@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </Flex>
     </ChakraProvider>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
