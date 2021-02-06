@@ -1,26 +1,23 @@
-import { Flex, Heading } from '@chakra-ui/react';
+import { Heading } from '@chakra-ui/react';
 import { useRouter } from 'next/dist/client/router';
-import { Button, HeroBar } from '../components/CustomComponents';
+import {
+  Button,
+  HeroBar,
+  Layout,
+  PageHeading,
+} from '../components/CustomComponents';
 
 export default function postGame() {
   const router = useRouter();
   return (
-    <Flex
-      flexDir="column"
-      alignItems="center"
-      minH="80vh"
-      minW="100%"
-      justifyContent="space-around"
-    >
-      <Heading fontWeight="300" color="white" fontSize={['35px', '64px']}>
-        Radiant Victory
-      </Heading>
+    <Layout>
+      <PageHeading>Radiant Victory</PageHeading>
       <HeroBar />
-      <Heading color="white" fontSize="24px" fontWeight="300" my={-16}>
+      <Heading color="white" fontSize={20} fontWeight="300" my={-16}>
         vs
       </Heading>
       <HeroBar />
       <Button onClick={() => router.push('/roleSelection')}>Play Again</Button>
-    </Flex>
+    </Layout>
   );
 }

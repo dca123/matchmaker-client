@@ -8,30 +8,29 @@ export default function Button({
   return (
     <ChakraButton
       backgroundColor="pink"
-      h="70px"
-      w="260px"
-      borderRadius="30px"
+      h={14}
+      w={36}
+      borderRadius={28}
       fontFamily="Montserrat"
       fontWeight="normal"
       color="white"
-      fontSize={fontSize || '36px'}
+      fontSize={fontSize || 'lg'}
       onClick={onClick}
       {...rest}
       _focus={{
         backgroundColor: 'black',
         borderColor: 'pink',
-        borderWidth: '2px',
-        boxShadow: 'none !important',
+        borderWidth: '0.125rem',
       }}
       _active={{
         backgroundColor: 'black',
         borderColor: 'pink',
-        borderWidth: '2px',
+        borderWidth: '0.125rem',
       }}
       _hover={{
         backgroundColor: 'black',
         borderColor: 'pink',
-        borderWidth: '2px',
+        borderWidth: '0.125rem',
       }}
     >
       {children}

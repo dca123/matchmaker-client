@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         justifyContent="center"
         alignItems="center"
       >
-        <Component {...pageProps} mt={-16} />
+        <Component {...pageProps} />
       </Flex>
     </ChakraProvider>
   );

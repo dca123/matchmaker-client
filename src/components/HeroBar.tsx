@@ -3,12 +3,10 @@ import Hero from './Hero';
 export default function HeroBar({}: FlexProps) {
   return (
     <Flex
-      borderRadius="60px"
+      borderRadius="full"
       background="rgba(255, 255, 255, 0.05)"
-      // h="84px"
-      // w="620px"
       w="22rem"
-      padding="20px"
+      padding={4}
       justifyContent="space-around"
     >
       <Hero />
