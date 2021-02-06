@@ -10,16 +10,21 @@ export default function Lobby() {
       <Progress
         value={5}
         size="sm"
-        w="85%"
+        w={['22rem', '43rem']}
         borderRadius="base"
-        my={-16}
+        my={[-24, -16]}
         onClick={() => router.push('/postGame')}
       />
-      <Flex w="100%" justifyContent="space-around" wrap="wrap">
+      <Flex w={['20rem', '36rem']} justifyContent="space-around">
         <TeamCard teamName="Radiant" />
         <TeamCard teamName="Dire" />
       </Flex>
-      <Heading fontSize="sm" color="white" fontWeight="300">
+      <Heading
+        fontSize={['sm', 'lg']}
+        color="white"
+        fontWeight="300"
+        mt={[-24, -16]}
+      >
         Type !ready in lobby chat
       </Heading>
     </Layout>

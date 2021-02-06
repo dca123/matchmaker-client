@@ -5,8 +5,8 @@ export default function Layout({ children, ...rest }: FlexProps) {
       flexDirection="column"
       alignItems="center"
       justifyContent="space-around"
-      minH="90vh"
-      minW="100%"
+      minH={['90vh', '60vh']}
+      w="100%"
       {...rest}
     >
       {children}

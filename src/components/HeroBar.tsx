@@ -1,11 +1,11 @@
 import { Flex, FlexProps } from '@chakra-ui/react';
 import Hero from './Hero';
-export default function HeroBar({}: FlexProps) {
+export default function HeroBar({ background }: FlexProps) {
   return (
     <Flex
       borderRadius="full"
-      background="rgba(255, 255, 255, 0.05)"
-      w="22rem"
+      background={background || 'rgba(255, 255, 255, 0.05)'}
+      w={['22rem', '44rem']}
       padding={4}
       justifyContent="space-around"
     >

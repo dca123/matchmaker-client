@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Fonts />
       <Flex
         minH="100vh"
-        minW="100%"
+        w="100hh"
         backgroundColor="black"
         justifyContent="center"
         alignItems="center"

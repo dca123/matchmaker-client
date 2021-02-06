@@ -12,20 +12,20 @@ export default function roleSelection() {
   return (
     <Layout>
       <PageHeading> Select Your Roles </PageHeading>
-      <GradientCard h={64} w={52}>
-        <Text fontSize="lg" color="white">
+      <GradientCard h={[64, 80]} w={[52, 64]} py={[2, 5]}>
+        <Text fontSize={['lg', '2xl']} color="white">
           Hard Support
         </Text>
-        <Text fontSize="lg" color="pink">
+        <Text fontSize={['lg', '2xl']} color="pink">
           Soft Support
         </Text>
-        <Text fontSize="lg" color="white">
+        <Text fontSize={['lg', '2xl']} color="white">
           Offlane
         </Text>
-        <Text fontSize="lg" color="pink">
+        <Text fontSize={['lg', '2xl']} color="pink">
           Midlane
         </Text>
-        <Text fontSize="lg" color="white">
+        <Text fontSize={['lg', '2xl']} color="white">
           Hard Carry
         </Text>
       </GradientCard>

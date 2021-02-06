@@ -8,13 +8,13 @@ export default function Button({
   return (
     <ChakraButton
       backgroundColor="pink"
-      h={14}
-      w={36}
+      h={[14]}
+      w={[36, 48]}
       borderRadius={28}
       fontFamily="Montserrat"
       fontWeight="normal"
       color="white"
-      fontSize={fontSize || 'lg'}
+      fontSize={fontSize || ['lg', '2xl']}
       onClick={onClick}
       {...rest}
       _focus={{
