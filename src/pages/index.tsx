@@ -5,12 +5,15 @@ export default function Index() {
   const router = useRouter();
   return (
     <Layout>
-      <GradientCard h={'26rem'} w={72}>
+      <GradientCard h={['26rem', '32rem']} w={[72, 96]}>
         <Heading fontSize={['3xl', '4xl']} color="white">
           DOTA Newbs
         </Heading>
         <Image h={32} w={32} src="dotaImg.png" />
-        <Button fontSize="sm" onClick={() => router.push('/roleSelection')}>
+        <Button
+          fontSize={['sm', 'lg']}
+          onClick={() => router.push('/roleSelection')}
+        >
           Login via Steam
         </Button>
       </GradientCard>

@@ -11,9 +11,9 @@ export default function postGame() {
   const router = useRouter();
   return (
     <Layout>
-      <PageHeading>Radiant Victory</PageHeading>
-      <HeroBar />
-      <Heading color="white" fontSize={20} fontWeight="300" my={-16}>
+      <PageHeading fontSize={['4xl', '5xl']}>Radiant Victory</PageHeading>
+      <HeroBar background="rgba(0, 255, 163, 0.37)" />
+      <Heading color="white" fontSize={['lg', 'xl']} fontWeight="300" my={-16}>
         vs
       </Heading>
       <HeroBar />

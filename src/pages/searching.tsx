@@ -11,7 +11,7 @@ export default function roleSelection() {
   return (
     <Layout>
       <PageHeading>Finding Game</PageHeading>
-      <GradientCard w={64} h={64}>
+      <GradientCard w={[64, 80]} h={[64, 80]}>
         <Image src="searchJug.gif" ml={5} />
       </GradientCard>
       <Button onClick={() => router.push('/lobby')}>Cancel</Button>

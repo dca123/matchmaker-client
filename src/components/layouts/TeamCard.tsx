@@ -9,23 +9,23 @@ export default function TeamCard({
   playerArray = ['Player 1', 'Player 2', 'Player 3', 'Player 4', 'Player 5'],
 }: TeamCardProps) {
   return (
-    <GradientCard w={36} h={48} py={4}>
-      <Heading fontWeight="300" fontSize="2xl" color="white">
+    <GradientCard w={[36, 60]} h={[48, 80]} py={[4, 5]}>
+      <Heading fontWeight="300" fontSize={['2xl', '4xl']} color="white">
         {teamName}
       </Heading>
-      <Text fontSize="md" color="white">
+      <Text fontSize={['md', 'xl']} color="white">
         {playerArray[0]}
       </Text>
-      <Text fontSize="md" color="white">
+      <Text fontSize={['md', 'xl']} color="white">
         {playerArray[1]}
       </Text>
-      <Text fontSize="md" color="white">
+      <Text fontSize={['md', 'xl']} color="white">
         {playerArray[2]}
       </Text>
-      <Text fontSize="md" color="pink">
+      <Text fontSize={['md', 'xl']} color="pink">
         {playerArray[3]}
       </Text>
-      <Text fontSize="md" color="white">
+      <Text fontSize={['md', 'xl']} color="white">
         {playerArray[4]}
       </Text>
     </GradientCard>
