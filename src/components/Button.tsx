@@ -1,31 +1,36 @@
 import { Button as ChakraButton, ButtonProps } from '@chakra-ui/react';
-export default function Button({ children, fontSize, onClick }: ButtonProps) {
+export default function Button({
+  children,
+  fontSize,
+  onClick,
+  ...rest
+}: ButtonProps) {
   return (
     <ChakraButton
       backgroundColor="pink"
-      size="lg"
-      h="70px"
-      w="260px"
-      borderRadius="30px"
+      h={14}
+      w={36}
+      borderRadius={28}
       fontFamily="Montserrat"
       fontWeight="normal"
       color="white"
-      fontSize={fontSize || '36px'}
+      fontSize={fontSize || 'lg'}
       onClick={onClick}
+      {...rest}
       _focus={{
         backgroundColor: 'black',
         borderColor: 'pink',
-        borderWidth: '2px',
+        borderWidth: '0.125rem',
       }}
       _active={{
         backgroundColor: 'black',
         borderColor: 'pink',
-        borderWidth: '2px',
+        borderWidth: '0.125rem',
       }}
       _hover={{
         backgroundColor: 'black',
         borderColor: 'pink',
-        borderWidth: '2px',
+        borderWidth: '0.125rem',
       }}
     >
       {children}

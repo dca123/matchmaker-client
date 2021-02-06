@@ -1,36 +1,35 @@
-import { Flex, Heading, Text } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
+import { useRouter } from 'next/dist/client/router';
 import Button from '../components/Button';
-import GradientCard from '../components/GradientCard';
+import {
+  GradientCard,
+  Layout,
+  PageHeading,
+} from '../components/CustomComponents';
 
 export default function roleSelection() {
+  const router = useRouter();
   return (
-    <Flex
-      flexDir="column"
-      alignItems="center"
-      justifyContent="space-around"
-      h={['80%', '50%']}
-    >
-      <Heading fontWeight="400" color="white" fontSize={['35px', '48px']}>
-        Select Your Roles
-      </Heading>
-      <GradientCard h="352px" w="311px">
-        <Text lineHeight="33px" fontSize="24px" color="white">
+    <Layout>
+      <PageHeading> Select Your Roles </PageHeading>
+      <GradientCard h={64} w={52}>
+        <Text fontSize="lg" color="white">
           Hard Support
         </Text>
-        <Text lineHeight="33px" fontSize="24px" color="pink">
+        <Text fontSize="lg" color="pink">
           Soft Support
         </Text>
-        <Text lineHeight="33px" fontSize="24px" color="white">
+        <Text fontSize="lg" color="white">
           Offlane
         </Text>
-        <Text lineHeight="33px" fontSize="24px" color="pink">
+        <Text fontSize="lg" color="pink">
           Midlane
         </Text>
-        <Text lineHeight="33px" fontSize="24px" color="white">
+        <Text fontSize="lg" color="white">
           Hard Carry
         </Text>
       </GradientCard>
-      <Button>Search</Button>
-    </Flex>
+      <Button onClick={() => router.push('/searching')}>Search</Button>
+    </Layout>
   );
 }

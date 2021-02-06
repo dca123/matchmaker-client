@@ -1,70 +1,27 @@
-import { Heading, Flex, Progress, Text } from '@chakra-ui/react';
-import GradientCard from '../components/GradientCard';
+import { Heading, Flex, Progress } from '@chakra-ui/react';
+import { useRouter } from 'next/dist/client/router';
+import { TeamCard, PageHeading, Layout } from '../components/CustomComponents';
 
 export default function Lobby() {
+  const router = useRouter();
   return (
-    <Flex
-      w="827px"
-      h="800px"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="space-around"
-    >
-      <Heading color="white" fontSize="64px" fontWeight="normal">
-        Starting Game
-      </Heading>
+    <Layout>
+      <PageHeading> Starting Game </PageHeading>
       <Progress
-        value={30}
+        value={5}
         size="sm"
-        // colorScheme="green"
         w="85%"
-        borderRadius="30px"
+        borderRadius="base"
+        my={-16}
+        onClick={() => router.push('/postGame')}
       />
-      <Flex w="100%" justifyContent="space-between">
-        <GradientCard w="361px" h="494px">
-          <Heading fontWeight="300" fontSize="64px" color="white">
-            Radiant
-          </Heading>
-          <Text fontSize="36px" color="white">
-            Player 1
-          </Text>
-          <Text fontSize="36px" color="white">
-            Player 2
-          </Text>
-          <Text fontSize="36px" color="white">
-            Player 3
-          </Text>
-          <Text fontSize="36px" color="pink">
-            Player 4
-          </Text>
-          <Text fontSize="36px" color="white">
-            Player 5
-          </Text>
-        </GradientCard>
-        <GradientCard w="361px" h="494px">
-          <Heading fontWeight="300" fontSize="64px" color="white">
-            Dire
-          </Heading>
-          <Text fontSize="36px" color="white">
-            Player 1
-          </Text>
-          <Text fontSize="36px" color="white">
-            Player 2
-          </Text>
-          <Text fontSize="36px" color="white">
-            Player 3
-          </Text>
-          <Text fontSize="36px" color="pink">
-            Player 4
-          </Text>
-          <Text fontSize="36px" color="pink">
-            Player 5
-          </Text>
-        </GradientCard>
+      <Flex w="100%" justifyContent="space-around" wrap="wrap">
+        <TeamCard teamName="Radiant" />
+        <TeamCard teamName="Dire" />
       </Flex>
-      <Heading fontSize="36px" color="white" fontWeight="300">
+      <Heading fontSize="sm" color="white" fontWeight="300">
         Type !ready in lobby chat
       </Heading>
-    </Flex>
+    </Layout>
   );
 }

@@ -1,11 +1,8 @@
-import { Flex, Heading } from '@chakra-ui/react'
+import { Image, ImageProps } from '@chakra-ui/react';
 
-export const Hero = ({ title }: { title: string }) => (
-  <Flex justifyContent="center" alignItems="center" height="100vh">
-    <Heading fontSize="6vw">{title}</Heading>
-  </Flex>
-)
-
-Hero.defaultProps = {
-  title: 'with-chakra-ui-typescript',
+export default function Hero({
+  src = 'horiz/dazzle_hphover.png',
+  ...params
+}: ImageProps) {
+  return <Image src={src} w={14} h={7} {...params} />;
 }
