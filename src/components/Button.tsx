@@ -1,10 +1,5 @@
-import { Button as ChakraButton } from '@chakra-ui/react';
-type Props = {
-  children: React.ReactNode;
-  fontSize?: string;
-};
-
-export default function Button({ children, fontSize }: Props) {
+import { Button as ChakraButton, ButtonProps } from '@chakra-ui/react';
+export default function Button({ children, fontSize, onClick }: ButtonProps) {
   return (
     <ChakraButton
       backgroundColor="pink"
@@ -16,6 +11,22 @@ export default function Button({ children, fontSize }: Props) {
       fontWeight="normal"
       color="white"
       fontSize={fontSize || '36px'}
+      onClick={onClick}
+      _focus={{
+        backgroundColor: 'black',
+        borderColor: 'pink',
+        borderWidth: '2px',
+      }}
+      _active={{
+        backgroundColor: 'black',
+        borderColor: 'pink',
+        borderWidth: '2px',
+      }}
+      _hover={{
+        backgroundColor: 'black',
+        borderColor: 'pink',
+        borderWidth: '2px',
+      }}
     >
       {children}
     </ChakraButton>
