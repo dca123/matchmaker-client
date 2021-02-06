@@ -1,5 +1,4 @@
-import { Heading, Flex, Progress, Text } from '@chakra-ui/react';
-import GradientCard from '../components/GradientCard';
+import { Heading, Flex, Progress } from '@chakra-ui/react';
 import { TeamCard } from '../components/CustomComponents';
 
 export default function Lobby() {
