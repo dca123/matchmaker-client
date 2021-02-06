@@ -1,6 +1,8 @@
 import { Flex, Heading, Image } from '@chakra-ui/react';
 import { GradientCard, Button } from '../components/CustomComponents';
+import { useRouter } from 'next/dist/client/router';
 export default function roleSelection() {
+  const router = useRouter();
   return (
     <Flex
       flexDir="column"
@@ -14,7 +16,7 @@ export default function roleSelection() {
       <GradientCard w="311px" h="352px">
         <Image src="searchJug.gif" margin="0px 0 0 20px" />
       </GradientCard>
-      <Button size="sm">Cancel</Button>
+      <Button onClick={() => router.push('/lobby')}>Cancel</Button>
     </Flex>
   );
 }

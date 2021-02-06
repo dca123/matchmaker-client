@@ -9,7 +9,7 @@ export default function Index() {
         DOTA Newbs
       </Heading>
       <Image h="120px" w="120px" src="dotaImg.png" />
-      <Button fontSize="24px" onClick={() => router.push('/searching')}>
+      <Button fontSize="24px" onClick={() => router.push('/roleSelection')}>
         Login via Steam
       </Button>
     </GradientCard>

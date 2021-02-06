@@ -1,7 +1,9 @@
 import { Flex, Heading } from '@chakra-ui/react';
+import { useRouter } from 'next/dist/client/router';
 import { Button, HeroBar } from '../components/CustomComponents';
 
 export default function postGame() {
+  const router = useRouter();
   return (
     <Flex
       flexDir="column"
@@ -18,7 +20,7 @@ export default function postGame() {
         vs
       </Heading>
       <HeroBar />
-      <Button>Play Again</Button>
+      <Button onClick={() => router.push('/roleSelection')}>Play Again</Button>
     </Flex>
   );
 }

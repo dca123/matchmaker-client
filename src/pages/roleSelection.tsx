@@ -1,14 +1,16 @@
 import { Flex, Heading, Text } from '@chakra-ui/react';
+import { useRouter } from 'next/dist/client/router';
 import Button from '../components/Button';
 import GradientCard from '../components/GradientCard';
 
 export default function roleSelection() {
+  const router = useRouter();
   return (
     <Flex
       flexDir="column"
       alignItems="center"
       justifyContent="space-around"
-      h={['80%', '50%']}
+      minH="90vh"
     >
       <Heading fontWeight="400" color="white" fontSize={['35px', '48px']}>
         Select Your Roles
@@ -30,7 +32,7 @@ export default function roleSelection() {
           Hard Carry
         </Text>
       </GradientCard>
-      <Button>Search</Button>
+      <Button onClick={() => router.push('/searching')}>Search</Button>
     </Flex>
   );
 }

@@ -1,7 +1,9 @@
 import { Heading, Flex, Progress } from '@chakra-ui/react';
+import { useRouter } from 'next/dist/client/router';
 import { TeamCard } from '../components/CustomComponents';
 
 export default function Lobby() {
+  const router = useRouter();
   return (
     <Flex
       flexDirection="column"
@@ -13,15 +15,20 @@ export default function Lobby() {
       <Heading color="white" fontSize={['35px', '64px']} fontWeight="normal">
         Starting Game
       </Heading>
-      <Progress value={30} size="sm" w="85%" borderRadius="30px" my={-36} />
+      <Progress
+        value={30}
+        size="sm"
+        w="85%"
+        borderRadius="30px"
+        onClick={() => router.push('/postGame')}
+      />
       <Flex w="100%" justifyContent="space-around" wrap="wrap">
         <TeamCard teamName="Radiant" />
         <TeamCard teamName="Dire" />
-        {/* <TeamCard teamName="Dire" /> */}
-        {/* <Heading fontSize="36px" color="white" fontWeight="300">
-          Type !ready in lobby chat
-        </Heading> */}
       </Flex>
+      <Heading fontSize="sm" color="white" fontWeight="300">
+        Type !ready in lobby chat
+      </Heading>
     </Flex>
   );
 }
