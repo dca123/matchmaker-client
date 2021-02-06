@@ -10,11 +10,12 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Fonts />
       <Flex
         minH="100vh"
+        minW="100%"
         backgroundColor="black"
         justifyContent="center"
         alignItems="center"
       >
-        <Component {...pageProps} />
+        <Component {...pageProps} mt={-16} />
       </Flex>
     </ChakraProvider>
   );

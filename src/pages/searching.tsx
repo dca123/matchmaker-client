@@ -6,7 +6,7 @@ export default function roleSelection() {
       flexDir="column"
       alignItems="center"
       justifyContent="space-around"
-      h={['80%', '50%']}
+      minH="90vh"
     >
       <Heading fontWeight="400" color="white" fontSize={['35px', '48px']}>
         Finding game
@@ -14,7 +14,7 @@ export default function roleSelection() {
       <GradientCard w="311px" h="352px">
         <Image src="searchJug.gif" margin="0px 0 0 20px" />
       </GradientCard>
-      <Button>Cancel</Button>
+      <Button size="sm">Cancel</Button>
     </Flex>
   );
 }
