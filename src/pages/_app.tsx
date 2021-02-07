@@ -1,10 +1,10 @@
 import { ChakraProvider, Flex } from '@chakra-ui/react';
 
+import { AppProps } from 'next/app';
 import theme from '../theme/theme';
 import Fonts from '../theme/fonts';
-import { AppProps } from 'next/app';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component }: AppProps): React.ReactElement {
   return (
     <ChakraProvider resetCSS theme={theme}>
       <Fonts />
@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         justifyContent="center"
         alignItems="center"
       >
-        <Component {...pageProps} />
+        <Component />
       </Flex>
     </ChakraProvider>
   );

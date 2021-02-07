@@ -7,7 +7,7 @@ import {
   PageHeading,
 } from '../components/CustomComponents';
 
-export default function roleSelection() {
+export default function RoleSelection(): React.ReactElement {
   const router = useRouter();
   return (
     <Layout>

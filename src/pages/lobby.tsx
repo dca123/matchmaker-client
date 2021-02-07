@@ -2,7 +2,7 @@ import { Heading, Flex, Progress } from '@chakra-ui/react';
 import { useRouter } from 'next/dist/client/router';
 import { TeamCard, PageHeading, Layout } from '../components/CustomComponents';
 
-export default function Lobby() {
+export default function Lobby(): React.ReactElement {
   const router = useRouter();
   return (
     <Layout>

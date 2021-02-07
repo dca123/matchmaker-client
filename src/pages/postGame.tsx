@@ -7,7 +7,7 @@ import {
   PageHeading,
 } from '../components/CustomComponents';
 
-export default function postGame() {
+export default function PostGame(): React.ReactElement {
   const router = useRouter();
   return (
     <Layout>

@@ -1,6 +1,7 @@
 import { Flex, FlexProps } from '@chakra-ui/react';
 import Hero from './Hero';
-export default function HeroBar({ background }: FlexProps) {
+
+export default function HeroBar({ background }: FlexProps): React.ReactElement {
   return (
     <Flex
       borderRadius="full"

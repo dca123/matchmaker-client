@@ -19,7 +19,7 @@ const colors = {
   pink: '#BC6FF1',
 };
 const theme = extendTheme({
-  colors: colors,
+  colors,
   fonts,
   breakpoints,
   components: {

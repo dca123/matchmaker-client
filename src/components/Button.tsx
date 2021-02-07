@@ -1,10 +1,10 @@
 import { Button as ChakraButton, ButtonProps } from '@chakra-ui/react';
+
 export default function Button({
   children,
   fontSize,
   onClick,
-  ...rest
-}: ButtonProps) {
+}: ButtonProps): React.ReactElement {
   return (
     <ChakraButton
       backgroundColor="pink"
@@ -16,7 +16,6 @@ export default function Button({
       color="white"
       fontSize={fontSize || ['lg', '2xl']}
       onClick={onClick}
-      {...rest}
       _focus={{
         backgroundColor: 'black',
         borderColor: 'pink',

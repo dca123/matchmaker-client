@@ -1,7 +1,8 @@
 import { Image, Heading } from '@chakra-ui/react';
-import { Button, GradientCard, Layout } from '../components/CustomComponents';
 import { useRouter } from 'next/dist/client/router';
-export default function Index() {
+import { Button, GradientCard, Layout } from '../components/CustomComponents';
+
+export default function Index(): React.ReactElement {
   const router = useRouter();
   return (
     <Layout>

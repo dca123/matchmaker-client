@@ -1,12 +1,13 @@
 import { Image } from '@chakra-ui/react';
+import { useRouter } from 'next/dist/client/router';
 import {
   GradientCard,
   Button,
   PageHeading,
   Layout,
 } from '../components/CustomComponents';
-import { useRouter } from 'next/dist/client/router';
-export default function roleSelection() {
+
+export default function RoleSelection(): React.ReactElement {
   const router = useRouter();
   return (
     <Layout>

@@ -19,11 +19,12 @@ export default function NextChakraLink({
   shallow,
   prefetch,
   children,
-  ...chakraProps
-}: NextChakraLinkProps) {
+  isExternal,
+  size,
+}: NextChakraLinkProps): React.ReactElement {
   return (
     <NextLink
-      passHref={true}
+      passHref
       href={href}
       as={as}
       replace={replace}
@@ -31,7 +32,9 @@ export default function NextChakraLink({
       shallow={shallow}
       prefetch={prefetch}
     >
-      <ChakraLink {...chakraProps}>{children}</ChakraLink>
+      <ChakraLink isExternal={isExternal} size={size}>
+        {children}
+      </ChakraLink>
     </NextLink>
   );
 }

@@ -1,6 +1,6 @@
 import { Global } from '@emotion/react';
 
-export default function Fonts() {
+export default function Fonts(): React.ReactElement {
   return (
     <Global
       styles={`
