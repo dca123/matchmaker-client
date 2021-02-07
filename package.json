@@ -6,9 +6,10 @@
     "build": "next build",
     "start": "next start",
     "dev": "next",
-    "lint": "eslint src --ext .ts,.tsx",
-    "lint:fix": "npm run lint --fix",
-    "commit": "npx cz -S"
+    "type-check": "tsc --project tsconfig.json --pretty --noEmit",
+    "lint": "eslint src/** --ext .ts,.tsx --fix",
+    "commit": "npx cz -S",
+    "format": "prettier -w './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc --ignore-path ./.prettierignore"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.0",
@@ -39,6 +40,7 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "husky": "^5.0.8",
+    "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
     "typescript": "4.0.5"
   },
