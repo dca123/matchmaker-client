@@ -8,7 +8,7 @@
     "dev": "next",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "npm run lint --fix",
-    "commit": "npx cz"
+    "commit": "npx cz -S"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.0",
