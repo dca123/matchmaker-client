@@ -1,5 +1,6 @@
 import { Text } from '@chakra-ui/react';
 import { useRouter } from 'next/dist/client/router';
+import withAuth from '../containers/withAuthentication';
 import Button from '../components/Button';
 import {
   GradientCard,
@@ -7,7 +8,7 @@ import {
   PageHeading,
 } from '../components/CustomComponents';
 
-export default function RoleSelection(): React.ReactElement {
+function RoleSelection(): React.ReactElement {
   const router = useRouter();
   return (
     <Layout>
@@ -33,3 +34,4 @@ export default function RoleSelection(): React.ReactElement {
     </Layout>
   );
 }
+export default withAuth(RoleSelection);
