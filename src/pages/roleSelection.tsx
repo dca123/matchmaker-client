@@ -1,7 +1,7 @@
 import { Text } from '@chakra-ui/react';
 import { useRouter } from 'next/dist/client/router';
-import withAuth from '../containers/withAuthentication';
-import Button from '../components/Button';
+import Button from '@/components/Button';
+import withAuth from '@/containers/withAuthentication';
 import {
   GradientCard,
   Layout,
