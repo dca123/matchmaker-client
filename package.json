@@ -9,7 +9,7 @@
     "format": "prettier -w './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc --ignore-path ./.prettierignore",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
     "lint": "eslint src/** --ext .ts,.tsx --fix",
-    "commit": "npx cz -S"
+    "commit": "git add -A && npx cz -S"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.0",
