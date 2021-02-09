@@ -11,6 +11,9 @@ const options = {
       clientSecret: endpoint.DISCORD_CLIENT_SECRET,
     }),
   ],
+  jwt: {
+    signingKey: endpoint.JWT_SIGNING_KEY,
+  },
 };
 
 const Auth: NextApiHandler = (req: NextApiRequest, res: NextApiResponse) =>
