@@ -1,4 +1,5 @@
 import { Heading } from '@chakra-ui/react';
+import withAuth from 'containers/withAuthentication';
 import { useRouter } from 'next/dist/client/router';
 import {
   Button,
@@ -7,7 +8,7 @@ import {
   PageHeading,
 } from '../components/CustomComponents';
 
-export default function PostGame(): React.ReactElement {
+function PostGame(): React.ReactElement {
   const router = useRouter();
   return (
     <Layout>
@@ -21,3 +22,5 @@ export default function PostGame(): React.ReactElement {
     </Layout>
   );
 }
+
+export default withAuth(PostGame);
