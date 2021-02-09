@@ -12,7 +12,7 @@ describe('App', () => {
     (client.useSession as jest.Mock).mockReturnValueOnce([mockSession, false]);
     render(<Index />);
     expect(
-      screen.getByRole('heading', { name: 'Find Me a Lobby' }),
+      screen.getByRole('heading', { name: 'Find Me a Lobby' })
     ).toBeInTheDocument();
   });
 });

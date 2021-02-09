@@ -9,7 +9,7 @@ const Providers = ({
 };
 const customRender = (
   ui: React.ReactElement,
-  options: RenderOptions = {},
+  options: RenderOptions = {}
 ): RenderResult =>
   render(ui, {
     wrapper: Providers as React.ComponentType,
