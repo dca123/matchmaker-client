@@ -2,7 +2,8 @@
   "env": {
     "browser": true,
     "es2021": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parser": "@typescript-eslint/parser",
   "extends": [
@@ -12,6 +13,8 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
+    "plugin:jest-dom/recommended",
+    "plugin:testing-library/recommended",
     "prettier",
     "prettier/@typescript-eslint",
     "prettier/react",
@@ -24,7 +27,14 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "react", "react-hooks", "prettier"],
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-hooks",
+    "jest-dom",
+    "testing-library",
+    "prettier"
+  ],
   "rules": {
     // "off" or 0 - turn the rule off
     // "warn" or 1 - turn the rule on as a warning (doesn't affect exit code)
@@ -88,11 +98,16 @@
     "React": "writable"
   },
   "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       },
-      "typescript": {}
+      "typescript": {
+        "alwaysTryTypes": true
+      }
     },
     "react": {
       "version": "detect" // Tells eslint-plugin-react to automatically detect the version of React to use

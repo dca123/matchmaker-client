@@ -17,7 +17,13 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext",
-    "baseUrl": "./src"
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["./src/components/*"],
+      "@/layouts/*": ["./src/layouts/*"],
+      "@/pages/*": ["./src/pages/*"],
+      "@/containers/*": ["./src/containers/*"]
+    }
   },
   "exclude": ["node_modules"],
   "include": ["**/*.ts", "**/*.tsx"]
