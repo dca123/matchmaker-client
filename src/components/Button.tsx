@@ -14,7 +14,7 @@ export default function Button({
       fontFamily="Montserrat"
       fontWeight="normal"
       color="white"
-      fontSize={fontSize || ['lg', '2xl']}
+      fontSize={fontSize ?? ['lg', '2xl']}
       onClick={onClick}
       _focus={{
         backgroundColor: 'black',

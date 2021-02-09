@@ -5,7 +5,7 @@ export default function HeroBar({ background }: FlexProps): React.ReactElement {
   return (
     <Flex
       borderRadius="full"
-      background={background || 'rgba(255, 255, 255, 0.05)'}
+      background={background ?? 'rgba(255, 255, 255, 0.05)'}
       w={['22rem', '44rem']}
       padding={4}
       justifyContent="space-around"
