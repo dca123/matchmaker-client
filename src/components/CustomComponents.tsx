@@ -6,3 +6,4 @@ export { default as Hero } from './Hero';
 export { default as TeamCard } from './layouts/TeamCard';
 export { default as PageHeading } from './layouts/PageHeading';
 export { default as Layout } from './layouts/Layout';
+export { default as RoleText } from './RoleText';
