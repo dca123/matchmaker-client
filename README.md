@@ -12,16 +12,22 @@ Find live version on [here](http://lobbyfinder.devinda.me/)
 npm install
 ```
 
-## Usage
+## Usage in Dev Server
 
 ```bash
 npm run dev
 ```
 
+## Usage in Prod
+
+```bash
+npm run build
+```
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-Please make sure to update tests as appropriate.
+Please make sure to update tests as appropriate. This is a [Commitizen](https://github.com/commitizen) friendly library. Please use `npx cz` to commit messages. If any typescript or eslint parameters needs to be changes, please raise an issue first. 
 
 ## License
 
