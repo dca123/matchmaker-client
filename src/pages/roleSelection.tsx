@@ -1,34 +1,53 @@
-import { Text } from '@chakra-ui/react';
 import { useRouter } from 'next/dist/client/router';
-import Button from '@/components/Button';
-import withAuth from '@/containers/withAuthentication';
+import { useState } from 'react';
+import { RoleTypes } from 'components/RoleText';
+import withAuth from '../containers/withAuthentication';
+import Button from '../components/Button';
+
 import {
   GradientCard,
   Layout,
   PageHeading,
+  RoleText,
 } from '../components/CustomComponents';
+
+const roleSelection: RoleTypes = {
+  hs: false,
+  ss: false,
+  off: false,
+  mid: false,
+  hc: false,
+};
+
+const roleSelectionNames = [
+  'Hard Support',
+  'Soft Support',
+  'Offlane',
+  'Midlane',
+  'Hard Carry',
+];
 
 function RoleSelection(): React.ReactElement {
   const router = useRouter();
+  const [roles, setRoles] = useState(roleSelection);
   return (
     <Layout>
       <PageHeading> Select Your Roles </PageHeading>
       <GradientCard h={[64, 80]} w={[52, 64]} py={[2, 5]}>
-        <Text fontSize={['lg', '2xl']} color="white">
-          Hard Support
-        </Text>
-        <Text fontSize={['lg', '2xl']} color="pink">
-          Soft Support
-        </Text>
-        <Text fontSize={['lg', '2xl']} color="white">
-          Offlane
-        </Text>
-        <Text fontSize={['lg', '2xl']} color="pink">
-          Midlane
-        </Text>
-        <Text fontSize={['lg', '2xl']} color="white">
-          Hard Carry
-        </Text>
+        {Object.keys(roleSelection).map(
+          (roleKey: string, roleKeyIdx: number) => {
+            return (
+              <RoleText
+                key={roleKey}
+                setRoles={setRoles}
+                roles={roles}
+                roleKey={roleKey as keyof RoleTypes}
+              >
+                {roleSelectionNames[roleKeyIdx]}
+              </RoleText>
+            );
+          }
+        )}
       </GradientCard>
       <Button onClick={() => router.push('/searching')}>Search</Button>
     </Layout>
