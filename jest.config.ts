@@ -11,5 +11,6 @@ const config: Config.InitialOptions = {
     '^@/layouts(.*)$': '<rootDir>/src/layouts$1',
     '^@/containers(.*)$': '<rootDir>/src/containers$1',
   },
+  collectCoverageFrom: ['src/*/*.{ts,tsx}'],
 };
 export default config;
