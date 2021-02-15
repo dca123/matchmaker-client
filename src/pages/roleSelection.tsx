@@ -1,8 +1,9 @@
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { RoleTypes } from 'components/RoleText';
+import { RoleTypes } from '@/components/RoleText';
 import withAuth from '../containers/withAuthentication';
 import Button from '../components/Button';
+
 import {
   GradientCard,
   Layout,

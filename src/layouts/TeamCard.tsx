@@ -17,19 +17,19 @@ export default function TeamCard({
       <Heading fontWeight="300" fontSize={['2xl', '4xl']} color="white">
         {teamName}
       </Heading>
-      <Text fontSize={['md', 'xl']} color="white">
+      <Text fontSize={['md', 'xl']} color="white" data-testid="playerName">
         {playerArray?.slice(0, 1)}
       </Text>
-      <Text fontSize={['md', 'xl']} color="pink">
+      <Text fontSize={['md', 'xl']} color="pink" data-testid="playerName">
         {playerArray?.slice(1, 2)}
       </Text>
-      <Text fontSize={['md', 'xl']} color="white">
+      <Text fontSize={['md', 'xl']} color="white" data-testid="playerName">
         {playerArray?.slice(2, 3)}
       </Text>
-      <Text fontSize={['md', 'xl']} color="pink">
+      <Text fontSize={['md', 'xl']} color="pink" data-testid="playerName">
         {playerArray?.slice(3, 4)}
       </Text>
-      <Text fontSize={['md', 'xl']} color="white">
+      <Text fontSize={['md', 'xl']} color="white" data-testid="playerName">
         {playerArray?.slice(4, 5)}
       </Text>
     </GradientCard>

@@ -1,7 +1,7 @@
 import { Image, Heading } from '@chakra-ui/react';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 import { signIn, useSession } from 'next-auth/client';
-import { Button, GradientCard, Layout } from '../components/CustomComponents';
+import { Button, GradientCard, Layout } from '@/components/CustomComponents';
 
 export default function Index(): React.ReactElement {
   const router = useRouter();
@@ -12,7 +12,7 @@ export default function Index(): React.ReactElement {
         <Heading fontSize={['3xl', '4xl']} color="white">
           Find Me a Lobby
         </Heading>
-        <Image h={32} w={32} src="dotaImg.png" />
+        <Image alt="Dota 2 Logo" h={32} w={32} src="dotaImg.png" />
         {session && (
           <Button
             fontSize={['sm', 'lg']}

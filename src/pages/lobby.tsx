@@ -1,13 +1,13 @@
 import { Heading, Flex, Progress } from '@chakra-ui/react';
-import withAuth from 'containers/withAuthentication';
-import { useRouter } from 'next/dist/client/router';
+import withAuth from '@/containers/withAuthentication';
+import { useRouter } from 'next/router';
 import { TeamCard, PageHeading, Layout } from '../components/CustomComponents';
 
 function Lobby(): React.ReactElement {
   const router = useRouter();
   return (
     <Layout>
-      <PageHeading> Starting Game </PageHeading>
+      <PageHeading>Starting Game</PageHeading>
       <Progress
         value={5}
         size="sm"
