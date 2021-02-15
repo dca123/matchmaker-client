@@ -1,6 +1,5 @@
 import Index from '@/pages/index';
 import { signIn } from 'next-auth/client';
-import { useRouter } from 'next/router';
 import {
   render,
   screen,
@@ -12,14 +11,15 @@ import {
 
 jest.mock('next-auth/client');
 jest.mock('next/router', () => ({
-  useRouter: jest.fn(),
+  useRouter() {
+    return mockRouter;
+  },
 }));
 
 describe('/index', () => {
   describe('is authenticated', () => {
     beforeEach(() => {
       mockAuthenticate();
-      (useRouter as jest.Mock).mockReturnValue(mockRouter);
       render(<Index />);
     });
 

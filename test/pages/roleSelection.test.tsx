@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import RoleSelection from '@/pages/roleSelection';
 import { fireEvent } from '@testing-library/react';
 import {
@@ -18,13 +17,14 @@ const roleSelectionNames = [
 ];
 
 jest.mock('next/router', () => ({
-  useRouter: jest.fn(),
+  useRouter() {
+    return mockRouter;
+  },
 }));
 
 describe('/roleSelection', () => {
   beforeEach(() => {
     mockAuthenticate();
-    (useRouter as jest.Mock).mockReturnValue(mockRouter);
     render(<RoleSelection />);
   });
 
