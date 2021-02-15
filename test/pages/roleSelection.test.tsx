@@ -7,6 +7,7 @@ import {
   mockAuthenticate,
   mockRouter,
 } from '../test-utils';
+import { loadingAuth, notAuth } from './authTests';
 
 const roleSelectionNames = [
   'Hard Support',
@@ -23,39 +24,47 @@ jest.mock('next/router', () => ({
 }));
 
 describe('/roleSelection', () => {
-  beforeEach(() => {
-    mockAuthenticate();
-    render(<RoleSelection />);
-  });
+  loadingAuth(RoleSelection);
+  notAuth(RoleSelection);
 
-  afterEach(cleanup);
-
-  it('renders', () => {
-    expect(screen.getByRole('heading')).toHaveTextContent('Select Your Roles');
-    expect(screen.getByRole('button')).toHaveTextContent('Search');
-    roleSelectionNames.forEach((roleName) => {
-      expect(screen.getByText(roleName)).toBeInTheDocument();
+  describe('is authenticated', () => {
+    beforeEach(() => {
+      mockAuthenticate();
+      render(<RoleSelection />);
     });
-  });
 
-  it('pushes roleSelection to router when button is clicked', () => {
-    fireEvent.click(screen.getByText('Search'));
-    expect(mockRouter.push).toHaveBeenCalledWith('/searching');
-  });
+    afterEach(cleanup);
 
-  describe('changes text color for each role on click', () => {
-    roleSelectionNames.forEach((roleName) => {
-      it(`${roleName}`, () => {
-        expect(screen.getByText(roleName)).toHaveStyle(`color: white`);
-        fireEvent.click(screen.getByText(roleName));
-        expect(screen.getByText(roleName)).toHaveStyle(`color: pink`);
-        roleSelectionNames
-          .filter((filteredRoleName) => filteredRoleName !== roleName)
-          .forEach((filteredRoleName) => {
-            expect(screen.getByText(filteredRoleName)).toHaveStyle(
-              `color: white`
-            );
-          });
+    it('renders', () => {
+      expect(screen.getByRole('heading')).toHaveTextContent(
+        'Select Your Roles'
+      );
+      expect(screen.getByRole('button')).toHaveTextContent('Search');
+      roleSelectionNames.forEach((roleName) => {
+        expect(screen.getByText(roleName)).toBeInTheDocument();
+      });
+    });
+
+    it('pushes roleSelection to router when button is clicked', () => {
+      fireEvent.click(screen.getByText('Search'));
+      expect(mockRouter.push).toHaveBeenCalledWith('/searching');
+    });
+
+    describe('changes text color for only clicked role', () => {
+      roleSelectionNames.forEach((roleName) => {
+        it(`${roleName}`, () => {
+          expect(screen.getByText(roleName)).toHaveStyle(`color: white`);
+          fireEvent.click(screen.getByText(roleName));
+          expect(screen.getByText(roleName)).toHaveStyle(`color: pink`);
+
+          roleSelectionNames
+            .filter((filteredRoleName) => filteredRoleName !== roleName)
+            .forEach((filteredRoleName) => {
+              expect(screen.getByText(filteredRoleName)).toHaveStyle(
+                `color: white`
+              );
+            });
+        });
       });
     });
   });

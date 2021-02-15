@@ -34,9 +34,15 @@ const Providers = ({
     </RouterContext.Provider>
   );
 };
-export const mockAuthenticate = (authenticateState = true): void => {
-  if (authenticateState === false) {
-    client.useSession = jest.fn().mockReturnValueOnce([false, false]);
+export const mockAuthenticate = ({
+  sessionState = true,
+  loading = false,
+}: {
+  sessionState?: boolean;
+  loading?: boolean;
+} = {}): void => {
+  if (sessionState === false) {
+    client.useSession = jest.fn().mockReturnValueOnce([false, loading]);
     return;
   }
   const mockSession: Session = {

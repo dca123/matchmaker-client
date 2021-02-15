@@ -40,7 +40,7 @@ describe('/index', () => {
   });
   describe('is not authenticated', () => {
     beforeEach(() => {
-      mockAuthenticate(false);
+      mockAuthenticate({ sessionState: false });
       render(<Index />);
     });
 

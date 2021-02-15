@@ -1,17 +1,34 @@
 import Searching from '@/pages/searching';
-import { mockAuthenticate, cleanup, render, screen } from '../test-utils';
+import {
+  mockAuthenticate,
+  cleanup,
+  render,
+  screen,
+  mockRouter,
+} from '../test-utils';
+import { loadingAuth, notAuth } from './authTests';
 
+jest.mock('next/router', () => ({
+  useRouter() {
+    return mockRouter;
+  },
+}));
 describe('/searching', () => {
-  beforeEach(() => {
-    mockAuthenticate();
-    render(<Searching />);
-  });
+  loadingAuth(Searching);
+  notAuth(Searching);
 
-  afterEach(cleanup);
+  describe('is authenticated', () => {
+    beforeEach(() => {
+      mockAuthenticate();
+      render(<Searching />);
+    });
 
-  it('renders', () => {
-    expect(screen.getByRole('heading')).toHaveTextContent('Finding Game');
-    expect(screen.getByAltText('Juggernaut Running')).toBeInTheDocument();
-    expect(screen.queryByRole('button')).toHaveTextContent('Cancel');
+    afterEach(cleanup);
+
+    it('renders', () => {
+      expect(screen.getByRole('heading')).toHaveTextContent('Finding Game');
+      expect(screen.getByAltText('Juggernaut Running')).toBeInTheDocument();
+      expect(screen.queryByRole('button')).toHaveTextContent('Cancel');
+    });
   });
 });

@@ -7,6 +7,7 @@ import {
   fireEvent,
   mockRouter,
 } from '../test-utils';
+import { loadingAuth, notAuth } from './authTests';
 
 jest.mock('next/router', () => ({
   useRouter() {
@@ -14,22 +15,27 @@ jest.mock('next/router', () => ({
   },
 }));
 describe('/postgame', () => {
-  beforeEach(() => {
-    mockAuthenticate();
-    render(<PostGame />);
-  });
+  loadingAuth(PostGame);
+  notAuth(PostGame);
 
-  afterEach(cleanup);
+  describe('authenticated', () => {
+    beforeEach(() => {
+      mockAuthenticate();
+      render(<PostGame />);
+    });
 
-  it('renders', () => {
-    expect(screen.getByText(/ *Victory/)).toBeInTheDocument();
-    expect(screen.getByText('vs')).toBeInTheDocument();
-    expect(screen.queryAllByAltText(/Hero */)).toHaveLength(10);
-    expect(screen.getByRole('button')).toHaveTextContent('Play Again');
-  });
+    afterEach(cleanup);
 
-  it('pushes roleSelection to router when button is clicked', () => {
-    fireEvent.click(screen.getByText('Play Again'));
-    expect(mockRouter.push).toHaveBeenCalledWith('/roleSelection');
+    it('renders', () => {
+      expect(screen.getByText(/ *Victory/)).toBeInTheDocument();
+      expect(screen.getByText('vs')).toBeInTheDocument();
+      expect(screen.queryAllByAltText(/Hero */)).toHaveLength(10);
+      expect(screen.getByRole('button')).toHaveTextContent('Play Again');
+    });
+
+    it('pushes roleSelection to router when button is clicked', () => {
+      fireEvent.click(screen.getByText('Play Again'));
+      expect(mockRouter.push).toHaveBeenCalledWith('/roleSelection');
+    });
   });
 });
