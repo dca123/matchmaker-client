@@ -8,6 +8,7 @@ const config: Config.InitialOptions = {
   moduleNameMapper: {
     '^@/components(.*)$': '<rootDir>/src/components$1',
     '^@/pages(.*)$': '<rootDir>/src/pages$1',
+    '^@/layouts(.*)$': '<rootDir>/src/layouts$1',
   },
 };
 export default config;
