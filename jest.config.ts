@@ -9,6 +9,7 @@ const config: Config.InitialOptions = {
     '^@/components(.*)$': '<rootDir>/src/components$1',
     '^@/pages(.*)$': '<rootDir>/src/pages$1',
     '^@/layouts(.*)$': '<rootDir>/src/layouts$1',
+    '^@/containers(.*)$': '<rootDir>/src/containers$1',
   },
 };
 export default config;
