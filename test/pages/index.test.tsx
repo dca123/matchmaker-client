@@ -1,40 +1,24 @@
 import Index from '@/pages/index';
-import { render, screen, fireEvent, cleanup } from '@testing-library/react';
-import client, { Session, signIn } from 'next-auth/client';
-import { useRouter, NextRouter } from 'next/router';
+import { signIn } from 'next-auth/client';
+import { useRouter } from 'next/router';
+import {
+  render,
+  screen,
+  fireEvent,
+  cleanup,
+  mockAuthenticate,
+  mockRouter,
+} from '../test-utils';
 
 jest.mock('next-auth/client');
 jest.mock('next/router', () => ({
   useRouter: jest.fn(),
 }));
-const mockRouter: NextRouter = {
-  basePath: '',
-  pathname: '/',
-  route: '/',
-  asPath: '/',
-  query: {},
-  push: jest.fn(),
-  replace: jest.fn(),
-  reload: jest.fn(),
-  back: jest.fn(),
-  prefetch: jest.fn(),
-  beforePopState: jest.fn(),
-  events: {
-    on: jest.fn(),
-    off: jest.fn(),
-    emit: jest.fn(),
-  },
-  isFallback: false,
-  isReady: true,
-};
-const mockSession: Session = {
-  expires: '1',
-  user: { email: 'a', name: 'Delta', image: 'c' },
-};
+
 describe('/index', () => {
   describe('is authenticated', () => {
     beforeEach(() => {
-      (client.useSession as jest.Mock).mockReturnValueOnce([mockSession]);
+      mockAuthenticate();
       (useRouter as jest.Mock).mockReturnValue(mockRouter);
       render(<Index />);
     });
@@ -49,15 +33,14 @@ describe('/index', () => {
         'Login via Discord'
       );
     });
-    it('pushes roleSelection to router when button is clicked', async () => {
+    it('pushes roleSelection to router when button is clicked', () => {
       fireEvent.click(screen.getByText('Find Lobby'));
       expect(mockRouter.push).toHaveBeenCalledWith('/roleSelection');
     });
   });
   describe('is not authenticated', () => {
     beforeEach(() => {
-      (client.useSession as jest.Mock).mockReturnValueOnce([false]);
-      (useRouter as jest.Mock).mockReturnValue(mockRouter);
+      mockAuthenticate(false);
       render(<Index />);
     });
 
