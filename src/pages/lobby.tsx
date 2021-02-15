@@ -7,7 +7,7 @@ function Lobby(): React.ReactElement {
   const router = useRouter();
   return (
     <Layout>
-      <PageHeading> Starting Game </PageHeading>
+      <PageHeading>Starting Game</PageHeading>
       <Progress
         value={5}
         size="sm"
