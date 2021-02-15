@@ -1,8 +1,9 @@
 import { render, RenderResult, RenderOptions } from '@testing-library/react';
 import { NextRouter } from 'next/router';
 import { RouterContext } from 'next/dist/next-server/lib/router-context';
+import client, { Session } from 'next-auth/client';
 
-const mockRouter: NextRouter = {
+export const mockRouter: NextRouter = {
   basePath: '',
   pathname: '/',
   route: '/',
@@ -32,6 +33,13 @@ const Providers = ({
       {children}
     </RouterContext.Provider>
   );
+};
+export const mockAuthenticate = (): void => {
+  const mockSession: Session = {
+    expires: '1',
+    user: { email: 'a', name: 'Delta', image: 'c' },
+  };
+  client.useSession = jest.fn().mockReturnValueOnce([mockSession, false]);
 };
 export * from '@testing-library/react';
 export const customRender = (

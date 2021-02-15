@@ -1,14 +1,13 @@
 import Index from '@/pages/index';
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import client, { Session, signIn } from 'next-auth/client';
-import { useRouter, NextRouter, Router } from 'next/router';
+import { useRouter, NextRouter } from 'next/router';
 
 jest.mock('next-auth/client');
 jest.mock('next/router', () => ({
   useRouter: jest.fn(),
 }));
 const mockRouter: NextRouter = {
-  ...Router,
   basePath: '',
   pathname: '/',
   route: '/',
