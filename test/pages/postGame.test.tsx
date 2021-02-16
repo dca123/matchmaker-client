@@ -1,3 +1,4 @@
+import '../matchMedia';
 import PostGame from '@/pages/postGame';
 import {
   mockAuthenticate,
