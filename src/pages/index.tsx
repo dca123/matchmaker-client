@@ -1,7 +1,12 @@
-import { Image, Heading } from '@chakra-ui/react';
+import { Heading } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { signIn, useSession } from 'next-auth/client';
-import { Button, GradientCard, Layout } from '@/components/CustomComponents';
+import {
+  Button,
+  GradientCard,
+  Layout,
+  Image,
+} from '@/components/CustomComponents';
 
 export default function Index(): React.ReactElement {
   const router = useRouter();
@@ -9,10 +14,15 @@ export default function Index(): React.ReactElement {
   return (
     <Layout>
       <GradientCard h={['26rem', '32rem']} w={[72, 96]}>
-        <Heading fontSize={['3xl', '4xl']} color="white">
+        <Heading fontSize={['2xl', '4xl']} color="white">
           Find Me a Lobby
         </Heading>
-        <Image alt="Dota 2 Logo" h={32} w={32} src="dotaImg.png" />
+        <Image
+          alt="Dota 2 Logo"
+          height={['128']}
+          width={['128']}
+          src="/dotaImg.png"
+        />
         {session && (
           <Button
             fontSize={['sm', 'lg']}
