@@ -1,3 +1,4 @@
+import '../matchMedia';
 import Index from '@/pages/index';
 import { signIn } from 'next-auth/client';
 import {

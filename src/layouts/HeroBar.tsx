@@ -1,5 +1,5 @@
 import { Flex, FlexProps } from '@chakra-ui/react';
-import Hero from './Hero';
+import Hero from '@/components/Hero';
 
 export default function HeroBar({ background }: FlexProps): React.ReactElement {
   return (
@@ -11,10 +11,10 @@ export default function HeroBar({ background }: FlexProps): React.ReactElement {
       justifyContent="space-around"
     >
       <Hero />
-      <Hero src="horiz/zuus_hphover.png" />
-      <Hero src="horiz/enigma_hphover.png" />
-      <Hero src="horiz/kunkka_hphover.png" />
-      <Hero src="horiz/lich_hphover.png" />
+      <Hero src="/horiz/zuus_hphover.png" />
+      <Hero src="/horiz/enigma_hphover.png" />
+      <Hero src="/horiz/kunkka_hphover.png" />
+      <Hero src="/horiz/lich_hphover.png" />
     </Flex>
   );
 }
