@@ -1,54 +1,93 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { RoleTypes } from '@/components/RoleText';
-import withAuth from '../containers/withAuthentication';
-import Button from '../components/Button';
+import { useReducer } from 'react';
+import { actionType } from '@/components/SearchConfigButton';
+import { Flex } from '@chakra-ui/react';
+import SearchConfigCard from '@/layouts/SearchConfigCard';
+import { Layout, PageHeading, Button } from '@/components/CustomComponents';
+import withAuth from '@/containers/withAuthentication';
 
-import {
-  GradientCard,
-  Layout,
-  PageHeading,
-  RoleText,
-} from '../components/CustomComponents';
-
-const roleSelection: RoleTypes = {
-  hs: false,
-  ss: false,
-  off: false,
-  mid: false,
-  hc: false,
+type searchConfigType = {
+  roleSelection: Record<string, boolean>;
+  serverSelection: Record<string, boolean>;
 };
 
-const roleSelectionNames = [
+const defaultSearchConfig = {
+  roleSelection: {
+    hs: false,
+    ss: false,
+    off: false,
+    mid: false,
+    hc: false,
+  },
+  serverSelection: {
+    us_east: false,
+    us_west: false,
+    eu_west: false,
+  },
+};
+
+const roleSelectionDictionary = [
   'Hard Support',
   'Soft Support',
   'Offlane',
   'Midlane',
   'Hard Carry',
 ];
+const serverSelectionDictionary = ['US East', 'US West', 'EU West'];
+const toggleSearchConfig = (
+  state: searchConfigType,
+  action: actionType
+): searchConfigType => {
+  const { configValue } = action;
+  switch (action.configType) {
+    case 'role':
+      return {
+        ...state,
+        roleSelection: {
+          ...state.roleSelection,
+          [configValue]: !state.roleSelection[configValue],
+        },
+      };
+      break;
+    case 'server':
+      return {
+        ...state,
+        serverSelection: {
+          ...state.serverSelection,
+          [configValue]: !state.serverSelection[configValue],
+        },
+      };
+      break;
+    default:
+      throw new Error('Unexcepted Action Type');
+  }
+};
 
 function RoleSelection(): React.ReactElement {
   const router = useRouter();
-  const [roles, setRoles] = useState(roleSelection);
+  const [
+    { roleSelection, serverSelection },
+    dispatchSearchConfigState,
+  ] = useReducer(toggleSearchConfig, defaultSearchConfig);
   return (
     <Layout>
       <PageHeading> Select Your Roles </PageHeading>
-      <GradientCard h={[64, 80]} w={[52, 64]} py={[2, 5]}>
-        {Object.keys(roleSelection).map(
-          (roleKey: string, roleKeyIdx: number) => {
-            return (
-              <RoleText
-                key={roleKey}
-                setRoles={setRoles}
-                roles={roles}
-                roleKey={roleKey as keyof RoleTypes}
-              >
-                {roleSelectionNames[roleKeyIdx]}
-              </RoleText>
-            );
-          }
-        )}
-      </GradientCard>
+      <Flex w={['20rem', '36rem']} justifyContent="space-around">
+        <SearchConfigCard
+          dispatchSearchConfigState={dispatchSearchConfigState}
+          dictionary={roleSelectionDictionary}
+          configState={roleSelection}
+          configType="role"
+          configTitle="Roles"
+        />
+        <SearchConfigCard
+          dispatchSearchConfigState={dispatchSearchConfigState}
+          dictionary={serverSelectionDictionary}
+          configState={serverSelection}
+          configType="server"
+          configTitle="Server"
+        />
+      </Flex>
       <Button onClick={() => router.push('/searching')}>Search</Button>
     </Layout>
   );
