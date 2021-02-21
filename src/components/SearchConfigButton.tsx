@@ -1,4 +1,4 @@
-import { Button, Checkbox, Box } from '@chakra-ui/react';
+import { Button, Checkbox, Text } from '@chakra-ui/react';
 import { Dispatch } from 'react';
 
 export interface actionType {
@@ -33,15 +33,17 @@ export default function RoleButton({
       }}
       onClick={() => dispatchSearchConfigState({ configType, configValue })}
       colorScheme="brand"
+      fontFamily="Nunito"
+      fontWeight="400"
     >
       <Checkbox
         colorScheme="brand"
         isChecked={isChecked}
         onChange={() => dispatchSearchConfigState({ configType, configValue })}
       />
-      <Box ml={2} textAlign="center" w="100%">
+      <Text ml={2} fontSize={['md', 'lg']} textAlign="center" w="100%">
         {children}
-      </Box>
+      </Text>
     </Button>
   );
 }
