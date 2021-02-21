@@ -1,5 +1,5 @@
 import '../matchMedia';
-import Index from '@/pages/index';
+import Login from '@/pages/login';
 import { signIn } from 'next-auth/client';
 import {
   render,
@@ -17,11 +17,11 @@ jest.mock('next/router', () => ({
   },
 }));
 
-describe('/index', () => {
+describe('/login', () => {
   describe('is authenticated', () => {
     beforeEach(() => {
       mockAuthenticate();
-      render(<Index />);
+      render(<Login />);
     });
 
     afterEach(cleanup);
@@ -42,7 +42,7 @@ describe('/index', () => {
   describe('is not authenticated', () => {
     beforeEach(() => {
       mockAuthenticate({ sessionState: false });
-      render(<Index />);
+      render(<Login />);
     });
 
     afterEach(cleanup);

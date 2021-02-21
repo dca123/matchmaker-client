@@ -10,7 +10,7 @@ export default function withAuth(
     const router = useRouter();
     if (loading) return <Spinner size="md" color="white" />;
     if (!loading && !session) {
-      router.replace('/');
+      router.replace('/login');
       return <></>;
     }
     return <WrappedComponent />;

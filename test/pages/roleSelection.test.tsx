@@ -1,4 +1,4 @@
-import RoleSelection from '@/pages/roleSelection';
+import Index from '@/pages/index';
 import { fireEvent } from '@testing-library/react';
 import {
   screen,
@@ -24,13 +24,13 @@ jest.mock('next/router', () => ({
 }));
 
 describe('/roleSelection', () => {
-  loadingAuth(RoleSelection);
-  notAuth(RoleSelection);
+  loadingAuth(Index);
+  notAuth(Index);
 
   describe('is authenticated', () => {
     beforeEach(() => {
       mockAuthenticate();
-      render(<RoleSelection />);
+      render(<Index />);
     });
 
     afterEach(cleanup);
