@@ -71,7 +71,7 @@ function RoleSelection(): React.ReactElement {
   ] = useReducer(toggleSearchConfig, defaultSearchConfig);
   return (
     <Layout>
-      <PageHeading> Select Your Roles </PageHeading>
+      <PageHeading>Are You Ready ?</PageHeading>
       <Flex w={['20rem', '36rem']} justifyContent="space-around">
         <SearchConfigCard
           dispatchSearchConfigState={dispatchSearchConfigState}

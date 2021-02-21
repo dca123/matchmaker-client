@@ -36,10 +36,8 @@ describe('/roleSelection', () => {
     afterEach(cleanup);
 
     it('renders', () => {
-      expect(screen.getByRole('heading')).toHaveTextContent(
-        'Select Your Roles'
-      );
-      expect(screen.getByRole('button')).toHaveTextContent('Search');
+      expect(screen.getByText('Are You Ready ?')).toBeInTheDocument();
+      expect(screen.getByText('Search')).toBeInTheDocument();
       roleSelectionNames.forEach((roleName) => {
         expect(screen.getByText(roleName)).toBeInTheDocument();
       });
@@ -48,24 +46,6 @@ describe('/roleSelection', () => {
     it('pushes roleSelection to router when button is clicked', () => {
       fireEvent.click(screen.getByText('Search'));
       expect(mockRouter.push).toHaveBeenCalledWith('/searching');
-    });
-
-    describe('changes text color for only clicked role', () => {
-      roleSelectionNames.forEach((roleName) => {
-        it(`${roleName}`, () => {
-          expect(screen.getByText(roleName)).toHaveStyle(`color: white`);
-          fireEvent.click(screen.getByText(roleName));
-          expect(screen.getByText(roleName)).toHaveStyle(`color: pink`);
-
-          roleSelectionNames
-            .filter((filteredRoleName) => filteredRoleName !== roleName)
-            .forEach((filteredRoleName) => {
-              expect(screen.getByText(filteredRoleName)).toHaveStyle(
-                `color: white`
-              );
-            });
-        });
-      });
     });
   });
 });
