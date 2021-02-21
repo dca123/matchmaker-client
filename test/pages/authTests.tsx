@@ -23,7 +23,7 @@ export const notAuth = (Component: React.FunctionComponent): void => {
     it('pushes index to router', () => {
       mockAuthenticate({ sessionState: false });
       render(<Component />);
-      expect(mockRouter.replace).toHaveBeenCalledWith('/');
+      expect(mockRouter.replace).toHaveBeenCalledWith('/login');
     });
   });
 };

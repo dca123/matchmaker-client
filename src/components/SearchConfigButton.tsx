@@ -34,7 +34,11 @@ export default function RoleButton({
       onClick={() => dispatchSearchConfigState({ configType, configValue })}
       colorScheme="brand"
     >
-      <Checkbox colorScheme="brand" isChecked={isChecked} />
+      <Checkbox
+        colorScheme="brand"
+        isChecked={isChecked}
+        onChange={() => dispatchSearchConfigState({ configType, configValue })}
+      />
       <Box ml={2} textAlign="center" w="100%">
         {children}
       </Box>

@@ -36,7 +36,7 @@ describe('/postgame', () => {
 
     it('pushes roleSelection to router when button is clicked', () => {
       fireEvent.click(screen.getByText('Play Again'));
-      expect(mockRouter.push).toHaveBeenCalledWith('/roleSelection');
+      expect(mockRouter.push).toHaveBeenCalledWith('/');
     });
   });
 });

@@ -18,7 +18,7 @@ function PostGame(): React.ReactElement {
         vs
       </Heading>
       <HeroBar />
-      <Button onClick={() => router.push('/roleSelection')}>Play Again</Button>
+      <Button onClick={() => router.push('/')}>Play Again</Button>
     </Layout>
   );
 }
