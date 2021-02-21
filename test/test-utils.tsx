@@ -3,7 +3,7 @@ import { NextRouter } from 'next/router';
 import { RouterContext } from 'next/dist/next-server/lib/router-context';
 import client, { Session } from 'next-auth/client';
 
-export const mockRouter: NextRouter = {
+export const mockRouter: NextRouter & { isLocaleDomain: boolean } = {
   basePath: '',
   pathname: '/',
   route: '/',
@@ -22,6 +22,7 @@ export const mockRouter: NextRouter = {
   },
   isFallback: false,
   isReady: true,
+  isLocaleDomain: false,
 };
 const Providers = ({
   children,
