@@ -5,13 +5,14 @@ export default function GradientCard({
   h,
   w,
   py,
+  justifyContent,
 }: FlexProps): React.ReactElement {
   return (
     <Flex
       flexDirection="column"
-      justifyContent="space-around"
+      justifyContent={justifyContent ?? 'space-around'}
       alignItems="center"
-      background="linear-gradient(179.99deg, #1D2D50 0.01%, #52057B 193.87%)"
+      background="linear-gradient(179.99deg, #1D2D50 0.01%, #52057B 350%)"
       borderRadius="xl"
       w={w}
       h={h}
