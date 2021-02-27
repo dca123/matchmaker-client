@@ -5,6 +5,7 @@ import { Flex } from '@chakra-ui/react';
 import SearchConfigCard from '@/layouts/SearchConfigCard';
 import { Layout, PageHeading, Button } from '@/components/CustomComponents';
 import withAuth from '@/containers/withAuthentication';
+import { io } from 'socket.io-client';
 
 type searchConfigType = {
   roleSelection: Record<string, boolean>;
@@ -65,6 +66,15 @@ const toggleSearchConfig = (
 
 function Index(): React.ReactElement {
   const router = useRouter();
+  const socket = io('http://localhost:8080/search', {
+    auth: {
+      playerID: 123,
+    },
+  });
+  socket.on('game', () => {
+    console.log('test');
+    router.push('/lobby');
+  });
   const [
     { roleSelection, serverSelection },
     dispatchSearchConfigState,
@@ -88,7 +98,7 @@ function Index(): React.ReactElement {
           configTitle="Server"
         />
       </Flex>
-      <Button onClick={() => router.push('/searching')}>Search</Button>
+      <Button onClick={() => socket.emit('enqueue')}>Search</Button>
     </Layout>
   );
 }
