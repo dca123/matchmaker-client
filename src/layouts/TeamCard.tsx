@@ -1,12 +1,26 @@
 import { Text, Heading } from '@chakra-ui/react';
 import GradientCard from './GradientCard';
 
-interface TeamCardProps {
-  teamName: string;
-  playerArray?: string[];
+export interface Player {
+  username: string;
+  ready: boolean;
 }
+export interface TeamCardProps {
+  teamName: string;
+  playerArray?: Player[];
+}
+export const defaultUser = {
+  username: 'Player',
+  ready: false,
+};
 const defaultProps = {
-  playerArray: ['Player 1', 'Player 2', 'Player 3', 'Player 4', 'Player 5'],
+  playerArray: [
+    defaultUser,
+    defaultUser,
+    defaultUser,
+    defaultUser,
+    defaultUser,
+  ],
 };
 export default function TeamCard({
   teamName,
@@ -17,20 +31,40 @@ export default function TeamCard({
       <Heading fontWeight="300" fontSize={['2xl', '4xl']} color="white">
         {teamName}
       </Heading>
-      <Text fontSize={['md', 'xl']} color="white" data-testid="playerName">
-        {playerArray?.slice(0, 1)}
+      <Text
+        fontSize={['md', 'xl']}
+        color={playerArray?.[0].ready ? 'pink' : 'white'}
+        data-testid="playerName"
+      >
+        {playerArray?.[0].username}
       </Text>
-      <Text fontSize={['md', 'xl']} color="pink" data-testid="playerName">
-        {playerArray?.slice(1, 2)}
+      <Text
+        fontSize={['md', 'xl']}
+        color={playerArray?.[0].ready ? 'pink' : 'white'}
+        data-testid="playerName"
+      >
+        {playerArray?.[1].username}
       </Text>
-      <Text fontSize={['md', 'xl']} color="white" data-testid="playerName">
-        {playerArray?.slice(2, 3)}
+      <Text
+        fontSize={['md', 'xl']}
+        color={playerArray?.[0].ready ? 'pink' : 'white'}
+        data-testid="playerName"
+      >
+        {playerArray?.[2].username}
       </Text>
-      <Text fontSize={['md', 'xl']} color="pink" data-testid="playerName">
-        {playerArray?.slice(3, 4)}
+      <Text
+        fontSize={['md', 'xl']}
+        color={playerArray?.[0].ready ? 'pink' : 'white'}
+        data-testid="playerName"
+      >
+        {playerArray?.[3].username}
       </Text>
-      <Text fontSize={['md', 'xl']} color="white" data-testid="playerName">
-        {playerArray?.slice(4, 5)}
+      <Text
+        fontSize={['md', 'xl']}
+        color={playerArray?.[0].ready ? 'pink' : 'white'}
+        data-testid="playerName"
+      >
+        {playerArray?.[4].username}
       </Text>
     </GradientCard>
   );
