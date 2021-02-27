@@ -1,7 +1,12 @@
 import { Flex, FlexProps } from '@chakra-ui/react';
 import Hero from '@/components/Hero';
 
-export default function HeroBar({ background }: FlexProps): React.ReactElement {
+export default function HeroBar({
+  background,
+  heroes,
+}: FlexProps & {
+  heroes: string[];
+}): React.ReactElement {
   return (
     <Flex
       borderRadius="full"
@@ -10,11 +15,9 @@ export default function HeroBar({ background }: FlexProps): React.ReactElement {
       padding={4}
       justifyContent="space-around"
     >
-      <Hero />
-      <Hero src="/horiz/zuus_hphover.png" />
-      <Hero src="/horiz/enigma_hphover.png" />
-      <Hero src="/horiz/kunkka_hphover.png" />
-      <Hero src="/horiz/lich_hphover.png" />
+      {heroes.map((heroName) => (
+        <Hero key={heroName} src={`/horiz/${heroName}.png`} />
+      ))}
     </Flex>
   );
 }
