@@ -1,4 +1,4 @@
-import { Heading } from '@chakra-ui/react';
+import { Heading, Spinner } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { signIn, useSession } from 'next-auth/client';
 import {
@@ -10,7 +10,12 @@ import {
 
 export default function Login(): React.ReactElement {
   const router = useRouter();
-  const [session] = useSession();
+  const [session, loading] = useSession();
+  if (loading) return <Spinner size="md" color="white" />;
+  if (session) {
+    router.replace('/');
+    return <></>;
+  }
   return (
     <Layout>
       <GradientCard h={['26rem', '32rem']} w={[72, 96]}>
@@ -23,16 +28,11 @@ export default function Login(): React.ReactElement {
           width={['128']}
           src="/dotaImg.png"
         />
-        {session && (
+        {!session && (
           <Button
             fontSize={['sm', 'lg']}
-            onClick={() => router.push('/roleSelection')}
+            onClick={() => signIn('discord', { callbackUrl: '/' })}
           >
-            Find Lobby
-          </Button>
-        )}
-        {!session && (
-          <Button fontSize={['sm', 'lg']} onClick={() => signIn('discord')}>
             Login via Discord
           </Button>
         )}
