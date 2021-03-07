@@ -1,11 +1,11 @@
-import { useRouter } from 'next/router';
 import { useReducer } from 'react';
 import { actionType } from '@/components/SearchConfigButton';
 import { Flex } from '@chakra-ui/react';
 import SearchConfigCard from '@/layouts/SearchConfigCard';
 import { Layout, PageHeading, Button } from '@/components/CustomComponents';
-import withAuth from '@/containers/withAuthentication';
-import { io } from 'socket.io-client';
+import withAuth from 'src/hoc/withAuthentication';
+import { Session } from 'next-auth/client';
+import { User } from 'next-auth';
 
 type searchConfigType = {
   roleSelection: Record<string, boolean>;
@@ -14,27 +14,18 @@ type searchConfigType = {
 
 const defaultSearchConfig = {
   roleSelection: {
-    hs: false,
-    ss: false,
-    off: false,
-    mid: false,
-    hc: false,
+    rockie: false,
+    coach: false,
   },
   serverSelection: {
-    us_east: false,
-    us_west: false,
-    eu_west: false,
+    us: false,
+    eu: false,
+    sea: false,
   },
 };
 
-const roleSelectionDictionary = [
-  'Hard Support',
-  'Soft Support',
-  'Offlane',
-  'Midlane',
-  'Hard Carry',
-];
-const serverSelectionDictionary = ['US East', 'US West', 'EU West'];
+const roleSelectionDictionary = ['Player', 'Coach'];
+const serverSelectionDictionary = ['US', 'EU', 'SEA'];
 const toggleSearchConfig = (
   state: searchConfigType,
   action: actionType
@@ -63,18 +54,24 @@ const toggleSearchConfig = (
       throw new Error('Unexcepted Action Type');
   }
 };
-
-function Index(): React.ReactElement {
-  const router = useRouter();
-  const socket = io('http://localhost:8080/search', {
-    auth: {
-      playerID: 123,
+const postData = async ({
+  id,
+  steamID,
+}: User): Promise<Record<string, string>> => {
+  const ticketID = await fetch('http://rmm-service.devinda.me/ticket', {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
     },
+    body: JSON.stringify({
+      playerID: id,
+      steamID,
+    }),
   });
-  socket.on('game', () => {
-    console.log('test');
-    router.push('/lobby');
-  });
+  return ticketID.json();
+};
+function Index({ session }: { session: Session }): React.ReactElement {
   const [
     { roleSelection, serverSelection },
     dispatchSearchConfigState,
@@ -98,7 +95,7 @@ function Index(): React.ReactElement {
           configTitle="Server"
         />
       </Flex>
-      <Button onClick={() => socket.emit('enqueue')}>Search</Button>
+      <Button onClick={() => postData(session.user)}>Search</Button>
     </Layout>
   );
 }
