@@ -6,6 +6,7 @@ import { Layout, PageHeading, Button } from '@/components/CustomComponents';
 import withAuth from 'src/hoc/withAuthentication';
 import { Session } from 'next-auth/client';
 import { User } from 'next-auth';
+import endpoints from '../../endpoints.config';
 
 type searchConfigType = {
   roleSelection: Record<string, boolean>;
@@ -58,7 +59,7 @@ const postData = async ({
   id,
   steamID,
 }: User): Promise<Record<string, string>> => {
-  const ticketID = await fetch('https://mm.rmm-service.devinda.me/ticket', {
+  const ticketID = await fetch(`${endpoints.API_RMM}/ticket`, {
     method: 'POST',
     mode: 'cors',
     headers: {
