@@ -58,7 +58,7 @@ const postData = async ({
   id,
   steamID,
 }: User): Promise<Record<string, string>> => {
-  const ticketID = await fetch('http://rmm-service.devinda.me/ticket', {
+  const ticketID = await fetch('https://mm.rmm-service.devinda.me/ticket', {
     method: 'POST',
     mode: 'cors',
     headers: {
