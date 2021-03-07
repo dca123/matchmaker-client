@@ -1,9 +1,9 @@
 import { Spinner } from '@chakra-ui/react';
-import { useSession } from 'next-auth/client';
+import { Session, useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 
 export default function withAuth(
-  WrappedComponent: React.FunctionComponent
+  WrappedComponent: React.FunctionComponent<{ session: Session }>
 ): React.FunctionComponent {
   const RequiresAuthentication = (): React.ReactElement => {
     const [session, loading] = useSession();
@@ -13,7 +13,10 @@ export default function withAuth(
       router.replace('/login');
       return <></>;
     }
-    return <WrappedComponent />;
+    if (session) {
+      return <WrappedComponent session={session} />;
+    }
+    return <>Error Occured</>;
   };
   return RequiresAuthentication;
 }
