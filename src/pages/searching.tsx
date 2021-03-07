@@ -1,5 +1,5 @@
 import { Image } from '@chakra-ui/react';
-import withAuth from '@/containers/withAuthentication';
+import withAuth from 'src/hoc/withAuthentication';
 import { useRouter } from 'next/router';
 import {
   GradientCard,
