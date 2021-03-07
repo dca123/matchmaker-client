@@ -6,7 +6,7 @@ import { Layout, PageHeading, Button } from '@/components/CustomComponents';
 import withAuth from 'src/hoc/withAuthentication';
 import { Session } from 'next-auth/client';
 import { User } from 'next-auth';
-import endpoints from '../../endpoints.config';
+import endpoint from '../../endpoints.config';
 
 type searchConfigType = {
   roleSelection: Record<string, boolean>;
@@ -59,7 +59,9 @@ const postData = async ({
   id,
   steamID,
 }: User): Promise<Record<string, string>> => {
-  const ticketID = await fetch(`${endpoints.API_RMM}/ticket`, {
+  console.log(endpoint.NEXT_PUBLIC_API_RMM);
+
+  const ticketID = await fetch(`${endpoint.NEXT_PUBLIC_API_RMM}/ticket`, {
     method: 'POST',
     mode: 'cors',
     headers: {

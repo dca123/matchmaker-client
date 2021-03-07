@@ -2,15 +2,15 @@
   "name": "with-chakra-ui-typescript",
   "version": "1.0.0",
   "scripts": {
-    "postinstall": "husky install && patch-package",
-    "build": "next build",
-    "start": "next start",
     "dev": "next",
-    "format": "prettier -w './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc --ignore-path ./.prettierignore",
-    "type-check": "tsc --project tsconfig.json --pretty --noEmit",
     "lint": "eslint src/** test/** --ext .ts,.tsx --fix",
     "commit": "git add -A && npx cz -S",
-    "test": "jest"
+    "test": "jest",
+    "format": "prettier -w './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc --ignore-path ./.prettierignore",
+    "type-check": "tsc --project tsconfig.json --pretty --noEmit",
+    "postinstall": "husky install && patch-package",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.0",
