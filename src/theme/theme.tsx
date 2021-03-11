@@ -45,6 +45,13 @@ const theme = extendTheme({
           bgColor: colors.pink,
         },
       },
+      variants: {
+        'with-error': {
+          filledTrack: {
+            bgColor: 'red.600',
+          },
+        },
+      },
     },
   },
 });
