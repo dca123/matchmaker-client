@@ -1,3 +1,4 @@
+import '../matchMedia';
 import Searching from '@/pages/searching';
 import {
   mockAuthenticate,

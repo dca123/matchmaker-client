@@ -1,5 +1,5 @@
 import { useToast, Box } from '@chakra-ui/react';
-import withAuth from 'src/hoc/withAuthentication';
+import withAuth from '@/hoc/withAuthentication';
 import { useRouter } from 'next/router';
 import {
   GradientCard,
@@ -8,7 +8,7 @@ import {
   Layout,
   Image,
 } from '@/components/CustomComponents';
-import { useTicket } from 'src/contexts/ticketContext';
+import { useTicket } from '@/contexts/ticketContext';
 import { io } from 'socket.io-client';
 import endpointsConfig from 'endpoints.config';
 

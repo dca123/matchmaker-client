@@ -9,7 +9,9 @@ const config: Config.InitialOptions = {
     '^@/components(.*)$': '<rootDir>/src/components$1',
     '^@/pages(.*)$': '<rootDir>/src/pages$1',
     '^@/layouts(.*)$': '<rootDir>/src/layouts$1',
-    '^@/containers(.*)$': '<rootDir>/src/containers$1',
+    '^@/hoc(.*)$': '<rootDir>/src/hoc$1',
+    '^@/contexts(.*)$': '<rootDir>/src/contexts$1',
+    'endpoints.config': '<rootDir>/endpoints.config.ts',
   },
   collectCoverageFrom: ['src/*/*.{ts,tsx}'],
 };

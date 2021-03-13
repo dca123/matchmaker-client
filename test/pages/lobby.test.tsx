@@ -25,7 +25,7 @@ describe('/lobby', () => {
 
     afterEach(cleanup);
     it('renders', () => {
-      expect(screen.getByText('Starting Game')).toBeInTheDocument();
+      expect(screen.getByText('Waiting on the Ancients')).toBeInTheDocument();
       expect(screen.getByRole('progressbar')).toBeInTheDocument();
       expect(screen.getByText('Type !ready in lobby chat')).toBeInTheDocument();
       expect(screen.getByText('Radiant')).toBeInTheDocument();

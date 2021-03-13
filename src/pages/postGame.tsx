@@ -1,5 +1,5 @@
 import { Heading, Spinner } from '@chakra-ui/react';
-import withAuth from 'src/hoc/withAuthentication';
+import withAuth from '@/hoc/withAuthentication';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import {
@@ -7,7 +7,7 @@ import {
   HeroBar,
   Layout,
   PageHeading,
-} from '../components/CustomComponents';
+} from '@/components/CustomComponents';
 
 type postGameData = {
   radiantVictory: boolean;

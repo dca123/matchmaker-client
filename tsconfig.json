@@ -22,7 +22,8 @@
       "@/components/*": ["./src/components/*"],
       "@/layouts/*": ["./src/layouts/*"],
       "@/pages/*": ["./src/pages/*"],
-      "@/containers/*": ["src/hoc/*"]
+      "@/hoc/*": ["./src/hoc/*"],
+      "@/contexts/*": ["./src/contexts/*"]
     }
   },
   "exclude": ["node_modules"],

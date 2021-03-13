@@ -1,12 +1,12 @@
 import { Heading, Flex, Progress } from '@chakra-ui/react';
-import withAuth from 'src/hoc/withAuthentication';
+import withAuth from '@/hoc/withAuthentication';
 import { useRouter } from 'next/router';
 import { io } from 'socket.io-client';
 import { useEffect, useState } from 'react';
 import { defaultPlayerArray, Player } from '@/layouts/TeamCard';
-import { useTicket } from 'src/contexts/ticketContext';
+import { useTicket } from '@/contexts/ticketContext';
 import endpointsConfig from 'endpoints.config';
-import { TeamCard, PageHeading, Layout } from '../components/CustomComponents';
+import { TeamCard, PageHeading, Layout } from '@/components/CustomComponents';
 
 function Lobby(): React.ReactElement {
   const router = useRouter();
