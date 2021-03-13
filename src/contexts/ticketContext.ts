@@ -1,11 +1,11 @@
 import { createContext, Dispatch, useContext, SetStateAction } from 'react';
 
 export type Ticket = {
-  ticketID: string;
+  ticketID: string | undefined;
 };
 
 export const emptyTicket = {
-  ticketID: '',
+  ticketID: undefined,
 };
 export type TicketContextType = {
   ticket: Ticket;
