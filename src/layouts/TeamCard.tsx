@@ -2,26 +2,24 @@ import { Text, Heading } from '@chakra-ui/react';
 import GradientCard from './GradientCard';
 
 export interface Player {
-  username: string;
+  id: string;
   ready: boolean;
 }
 export interface TeamCardProps {
   teamName: string;
   playerArray?: Player[];
 }
-export const defaultUser = {
-  username: 'Player',
+export const defaultUser: Player = {
+  id: 'Bot',
   ready: false,
 };
-const defaultProps = {
-  playerArray: [
-    defaultUser,
-    defaultUser,
-    defaultUser,
-    defaultUser,
-    defaultUser,
-  ],
-};
+export const defaultPlayerArray = [
+  defaultUser,
+  defaultUser,
+  defaultUser,
+  defaultUser,
+  defaultUser,
+];
 export default function TeamCard({
   teamName,
   playerArray,
@@ -33,40 +31,39 @@ export default function TeamCard({
       </Heading>
       <Text
         fontSize={['md', 'xl']}
-        color={playerArray?.[0].ready ? 'pink' : 'white'}
+        color={playerArray?.[0]?.ready ? 'pink' : 'white'}
         data-testid="playerName"
       >
-        {playerArray?.[0].username}
+        {playerArray?.[0]?.id}
       </Text>
       <Text
         fontSize={['md', 'xl']}
-        color={playerArray?.[0].ready ? 'pink' : 'white'}
+        color={playerArray?.[1]?.ready ? 'pink' : 'white'}
         data-testid="playerName"
       >
-        {playerArray?.[1].username}
+        {playerArray?.[1]?.id}
       </Text>
       <Text
         fontSize={['md', 'xl']}
-        color={playerArray?.[0].ready ? 'pink' : 'white'}
+        color={playerArray?.[2]?.ready ? 'pink' : 'white'}
         data-testid="playerName"
       >
-        {playerArray?.[2].username}
+        {playerArray?.[2]?.id}
       </Text>
       <Text
         fontSize={['md', 'xl']}
-        color={playerArray?.[0].ready ? 'pink' : 'white'}
+        color={playerArray?.[3]?.ready ? 'pink' : 'white'}
         data-testid="playerName"
       >
-        {playerArray?.[3].username}
+        {playerArray?.[3]?.id}
       </Text>
       <Text
         fontSize={['md', 'xl']}
-        color={playerArray?.[0].ready ? 'pink' : 'white'}
+        color={playerArray?.[4]?.ready ? 'pink' : 'white'}
         data-testid="playerName"
       >
-        {playerArray?.[4].username}
+        {playerArray?.[4]?.id}
       </Text>
     </GradientCard>
   );
 }
-TeamCard.defaultProps = defaultProps;
