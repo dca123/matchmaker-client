@@ -79,7 +79,7 @@ const createTicket = async (
 ): Promise<void> => {
   const returnData = await postData(session);
   setTicket(returnData);
-  sessionStorage.setItem('ticketID', returnData.ticketID);
+  sessionStorage.setItem('ticketID', returnData.ticketID ?? '');
   router.push('/searching');
 };
 function Index({ session }: { session: Session }): React.ReactElement {
