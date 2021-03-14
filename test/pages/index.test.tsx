@@ -1,5 +1,6 @@
 import Index from '@/pages/index';
 import userEvent from '@testing-library/user-event';
+import { waitFor } from '@testing-library/react';
 import {
   screen,
   cleanup,
@@ -32,8 +33,8 @@ describe('/index', () => {
       expect(screen.getByText('Search')).toBeInTheDocument();
     });
 
-    describe('Search Config Selection', () => {
-      it('only selects once', () => {
+    describe('search config selection', () => {
+      it('only selects an option once', () => {
         userEvent.click(screen.getByTestId('Player'));
         expect(screen.getByTestId('Player')).toHaveAttribute('data-checked');
         expect(screen.getByTestId('Coach')).not.toHaveAttribute('data-checked');
@@ -43,6 +44,20 @@ describe('/index', () => {
         expect(screen.getByTestId('Player')).not.toHaveAttribute(
           'data-checked'
         );
+      });
+    });
+
+    describe('clicking search', () => {
+      it('sets the sessionstorage', async () => {
+        global.fetch = jest.fn().mockImplementation(() =>
+          Promise.resolve({
+            json: () => Promise.resolve({ ticketID: '123abc456' }),
+          })
+        );
+
+        userEvent.click(screen.getByText('Search'));
+        await waitFor(() => expect(global.fetch).toBeCalled());
+        expect(sessionStorage.getItem('ticketID')).toBe('123abc456');
       });
     });
   });
