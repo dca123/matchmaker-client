@@ -16,11 +16,12 @@ function Lobby(): React.ReactElement {
   const [lobbyError, setLobbyError] = useState(false);
   const [radiantPlayers, setRadiantPlayers] = useState(defaultPlayerArray);
   const [direPlayers, setDirePlayers] = useState(defaultPlayerArray);
-  const { ticket } = useTicket();
+  const { ticket, setTicket } = useTicket();
 
   useEffect(() => {
     if (!ticket.ticketID) {
       ticket.ticketID = sessionStorage.getItem('ticketID') ?? '';
+      setTicket(ticket);
     }
 
     const socket = io(`${endpointsConfig.NEXT_PUBLIC_API_RMM}/lobby`, {
@@ -59,7 +60,7 @@ function Lobby(): React.ReactElement {
       // Disconnect socket on leaving page. Avoids memory leaks on reloads
       socket.disconnect();
     };
-  }, [ticket]);
+  }, [setTicket, ticket]);
   return (
     <>
       <Layout>
