@@ -7,14 +7,14 @@ import { actionType } from '@/components/SearchConfigButton';
 import { Dispatch } from 'react';
 
 type SearchConfigCardProps = {
-  dispatchSearchConfigState: Dispatch<actionType>;
+  dispatchSearchConfig: Dispatch<actionType>;
   dictionary: string[];
   configState: Record<string, boolean>;
   configTitle: 'Roles' | 'Server';
 } & Pick<actionType, 'configType'>;
 
 export default function SearchConfigCard({
-  dispatchSearchConfigState,
+  dispatchSearchConfig,
   dictionary,
   configState,
   configType,
@@ -33,7 +33,7 @@ export default function SearchConfigCard({
               configValue={id}
               configType={configType}
               isChecked={configState[id]}
-              dispatchSearchConfigState={dispatchSearchConfigState}
+              dispatchSearchConfig={dispatchSearchConfig}
             >
               {dictionary[index]}
             </SearchConfigButton>

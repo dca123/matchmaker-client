@@ -23,7 +23,8 @@
       "@/layouts/*": ["./src/layouts/*"],
       "@/pages/*": ["./src/pages/*"],
       "@/hoc/*": ["./src/hoc/*"],
-      "@/contexts/*": ["./src/contexts/*"]
+      "@/contexts/*": ["./src/contexts/*"],
+      "@/reducers/*": ["./src/reducers/*"]
     }
   },
   "exclude": ["node_modules"],

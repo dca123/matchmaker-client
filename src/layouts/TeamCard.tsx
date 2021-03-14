@@ -32,35 +32,30 @@ export default function TeamCard({
       <Text
         fontSize={['md', 'xl']}
         color={playerArray?.[0]?.ready ? 'pink' : 'white'}
-        data-testid="playerName"
       >
         {playerArray?.[0]?.id}
       </Text>
       <Text
         fontSize={['md', 'xl']}
         color={playerArray?.[1]?.ready ? 'pink' : 'white'}
-        data-testid="playerName"
       >
         {playerArray?.[1]?.id}
       </Text>
       <Text
         fontSize={['md', 'xl']}
         color={playerArray?.[2]?.ready ? 'pink' : 'white'}
-        data-testid="playerName"
       >
         {playerArray?.[2]?.id}
       </Text>
       <Text
         fontSize={['md', 'xl']}
         color={playerArray?.[3]?.ready ? 'pink' : 'white'}
-        data-testid="playerName"
       >
         {playerArray?.[3]?.id}
       </Text>
       <Text
         fontSize={['md', 'xl']}
         color={playerArray?.[4]?.ready ? 'pink' : 'white'}
-        data-testid="playerName"
       >
         {playerArray?.[4]?.id}
       </Text>

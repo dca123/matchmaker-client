@@ -1,4 +1,4 @@
-import { Button, Checkbox, Text } from '@chakra-ui/react';
+import { Button, Radio, Text } from '@chakra-ui/react';
 import { Dispatch } from 'react';
 
 export interface actionType {
@@ -9,7 +9,7 @@ export interface actionType {
 interface RoleButtonProps {
   children: React.ReactChild;
   isChecked: boolean;
-  dispatchSearchConfigState: Dispatch<actionType>;
+  dispatchSearchConfig: Dispatch<actionType>;
   configValue: string;
   configType: 'role' | 'server';
 }
@@ -17,7 +17,7 @@ interface RoleButtonProps {
 export default function RoleButton({
   children,
   isChecked,
-  dispatchSearchConfigState,
+  dispatchSearchConfig,
   configValue,
   configType,
 }: RoleButtonProps): React.ReactElement {
@@ -31,15 +31,16 @@ export default function RoleButton({
       _hover={{
         bg: isChecked ? 'brand.200' : 'brand.500',
       }}
-      onClick={() => dispatchSearchConfigState({ configType, configValue })}
+      onClick={() => dispatchSearchConfig({ configType, configValue })}
       colorScheme="brand"
       fontFamily="Nunito"
       fontWeight="400"
     >
-      <Checkbox
+      <Radio
         colorScheme="brand"
+        data-testid={children}
         isChecked={isChecked}
-        onChange={() => dispatchSearchConfigState({ configType, configValue })}
+        onChange={() => dispatchSearchConfig({ configType, configValue })}
       />
       <Text ml={2} fontSize={['md', 'lg']} textAlign="center" w="100%">
         {children}
