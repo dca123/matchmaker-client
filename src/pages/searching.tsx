@@ -8,7 +8,7 @@ import {
   Layout,
   Image,
 } from '@/components/CustomComponents';
-import { useTicket } from '@/contexts/ticketContext';
+import { Ticket, useTicket } from '@/contexts/ticketContext';
 import { io } from 'socket.io-client';
 import endpointsConfig from 'endpoints.config';
 import { useEffect } from 'react';
@@ -20,8 +20,8 @@ function RoleSelection(): React.ReactElement {
 
   useEffect(() => {
     if (!ticket.ticketID) {
-      ticket.ticketID = sessionStorage.getItem('ticketID') ?? '';
-      setTicket(ticket);
+      const ticketID = sessionStorage.getItem('ticketID') ?? undefined;
+      setTicket(new Ticket(ticketID));
     }
 
     const socket = io(`${endpointsConfig.NEXT_PUBLIC_API_RMM}/searching`, {

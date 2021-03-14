@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { waitFor } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import { useState } from 'react';
-import { emptyTicket, Ticket } from '@/contexts/ticketContext';
+import { Ticket } from '@/contexts/ticketContext';
 import {
   screen,
   cleanup,
@@ -67,7 +67,7 @@ describe('/index', () => {
       });
 
       it('sets the ticket in context', async () => {
-        const { result } = renderHook(() => useState<Ticket>(emptyTicket));
+        const { result } = renderHook(() => useState<Ticket>(new Ticket()));
         renderWithTicket(Index, result);
         userEvent.click(screen.getByText('Search'));
         await waitFor(() => expect(global.fetch).toBeCalled());
