@@ -1,5 +1,4 @@
 import Lobby from '@/pages/lobby';
-import Searching from '@/pages/searching';
 import {
   render,
   screen,
@@ -41,9 +40,5 @@ describe('Authentication', () => {
   describe('for /Lobby', () => {
     loadingAuth(Lobby);
     notAuth(Lobby);
-  });
-  describe('for /Searching', () => {
-    loadingAuth(Searching);
-    notAuth(Searching);
   });
 });
