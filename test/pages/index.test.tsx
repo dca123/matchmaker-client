@@ -1,12 +1,16 @@
 import Index from '@/pages/index';
 import userEvent from '@testing-library/user-event';
 import { waitFor } from '@testing-library/react';
+import { renderHook } from '@testing-library/react-hooks';
+import { useState } from 'react';
+import { emptyTicket, Ticket } from '@/contexts/ticketContext';
 import {
   screen,
   cleanup,
   render,
   mockAuthenticate,
   mockRouter,
+  renderWithTicket,
 } from '../test-utils';
 import { loadingAuth, notAuth } from '../hoc/authentication.test';
 
@@ -23,18 +27,19 @@ describe('/index', () => {
   describe('is authenticated', () => {
     beforeEach(() => {
       mockAuthenticate();
-      render(<Index />);
     });
 
     afterEach(cleanup);
 
     it('renders', () => {
+      render(<Index />);
       expect(screen.getByText('Are You Ready ?')).toBeInTheDocument();
       expect(screen.getByText('Search')).toBeInTheDocument();
     });
 
     describe('search config selection', () => {
       it('only selects an option once', () => {
+        render(<Index />);
         userEvent.click(screen.getByTestId('Player'));
         expect(screen.getByTestId('Player')).toHaveAttribute('data-checked');
         expect(screen.getByTestId('Coach')).not.toHaveAttribute('data-checked');
@@ -48,16 +53,25 @@ describe('/index', () => {
     });
 
     describe('clicking search', () => {
+      global.fetch = jest.fn().mockImplementation(() =>
+        Promise.resolve({
+          json: () => Promise.resolve({ ticketID: '123abc456' }),
+        })
+      );
       it('sets the sessionstorage', async () => {
-        global.fetch = jest.fn().mockImplementation(() =>
-          Promise.resolve({
-            json: () => Promise.resolve({ ticketID: '123abc456' }),
-          })
-        );
+        render(<Index />);
 
         userEvent.click(screen.getByText('Search'));
         await waitFor(() => expect(global.fetch).toBeCalled());
         expect(sessionStorage.getItem('ticketID')).toBe('123abc456');
+      });
+
+      it('sets the ticket in context', async () => {
+        const { result } = renderHook(() => useState<Ticket>(emptyTicket));
+        renderWithTicket(Index, result);
+        userEvent.click(screen.getByText('Search'));
+        await waitFor(() => expect(global.fetch).toBeCalled());
+        expect(result.current[0].ticketID).toBe('123abc456');
       });
     });
   });
