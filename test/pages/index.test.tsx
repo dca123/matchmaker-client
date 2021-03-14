@@ -8,7 +8,7 @@ import {
   mockAuthenticate,
   mockRouter,
 } from '../test-utils';
-import { loadingAuth, notAuth } from './authTests';
+import { loadingAuth, notAuth } from '../hoc/authentication.test';
 
 jest.mock('next/router', () => ({
   useRouter() {

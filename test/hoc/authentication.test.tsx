@@ -1,3 +1,5 @@
+import Lobby from '@/pages/lobby';
+import Searching from '@/pages/searching';
 import {
   render,
   screen,
@@ -7,7 +9,7 @@ import {
 } from '../test-utils';
 
 export const loadingAuth = (Component: React.FunctionComponent): void => {
-  describe('is loading authentication', () => {
+  describe('is loading session', () => {
     afterEach(cleanup);
     it('shows spinner', () => {
       mockAuthenticate({ sessionState: false, loading: true });
@@ -27,3 +29,21 @@ export const notAuth = (Component: React.FunctionComponent): void => {
     });
   });
 };
+
+jest.mock('next/router', () => ({
+  useRouter() {
+    return mockRouter;
+  },
+}));
+
+afterEach(cleanup);
+describe('Authentication', () => {
+  describe('for /Lobby', () => {
+    loadingAuth(Lobby);
+    notAuth(Lobby);
+  });
+  describe('for /Searching', () => {
+    loadingAuth(Searching);
+    notAuth(Searching);
+  });
+});
