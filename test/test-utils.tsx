@@ -1,7 +1,10 @@
-import { render, RenderResult, RenderOptions } from '@testing-library/react';
+import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import { NextRouter } from 'next/router';
 import { RouterContext } from 'next/dist/next-server/lib/router-context';
 import client, { Session } from 'next-auth/client';
+import { Ticket, TicketProvider } from '@/contexts/ticketContext';
+import { Dispatch, SetStateAction } from 'react';
+import { RenderResult as ReactHookRenderResult } from '@testing-library/react-hooks';
 
 export const mockRouter: NextRouter & { isLocaleDomain: boolean } = {
   basePath: '',
@@ -61,3 +64,18 @@ export const customRender = (
     wrapper: Providers as React.ComponentType,
     ...options,
   });
+
+export const renderWithTicket = (
+  Component: React.FunctionComponent,
+  ticketState: ReactHookRenderResult<[Ticket, Dispatch<SetStateAction<Ticket>>]>
+): RenderResult => {
+  const ticketProviderValue = {
+    ticket: ticketState.current[0],
+    setTicket: ticketState.current[1],
+  };
+  return render(
+    <TicketProvider value={ticketProviderValue}>
+      <Component />
+    </TicketProvider>
+  );
+};
