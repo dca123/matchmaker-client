@@ -1,6 +1,7 @@
 import '../matchMedia';
 import Login from '@/pages/login';
 import { signIn } from 'next-auth/client';
+import { loadingAuth } from '../hoc/authentication.test';
 import {
   render,
   screen,
@@ -18,13 +19,12 @@ jest.mock('next/router', () => ({
 }));
 
 describe('/login', () => {
+  afterEach(cleanup);
   describe('is not authenticated', () => {
     beforeEach(() => {
       mockAuthenticate({ sessionState: false });
       render(<Login />);
     });
-
-    afterEach(cleanup);
 
     it('renders', () => {
       expect(screen.getByRole('heading')).toHaveTextContent('Find Me a Lobby');
@@ -36,6 +36,15 @@ describe('/login', () => {
       fireEvent.click(screen.getByText('Login via Discord'));
       (signIn as jest.Mock).mockReturnValue(jest.fn);
       expect(signIn).toHaveBeenCalledWith('discord', { callbackUrl: '/' });
+    });
+  });
+
+  loadingAuth(Login);
+  describe('is authenticated', () => {
+    it('pushes /index to the router', () => {
+      mockAuthenticate({ sessionState: true, loading: false });
+      render(<Login />);
+      expect(mockRouter.replace).toBeCalledWith('/');
     });
   });
 });
