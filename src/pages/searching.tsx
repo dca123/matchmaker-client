@@ -13,7 +13,7 @@ import { io } from 'socket.io-client';
 import endpointsConfig from 'endpoints.config';
 import { useEffect } from 'react';
 
-function RoleSelection(): React.ReactElement {
+function Searching(): React.ReactElement {
   const router = useRouter();
   const { ticket, setTicket } = useTicket();
   const toast = useToast();
@@ -45,7 +45,9 @@ function RoleSelection(): React.ReactElement {
     });
 
     return () => {
-      socket.disconnect();
+      if (socket.connected) {
+        socket.disconnect();
+      }
     };
   }, [router, setTicket, ticket, toast]);
   return (
@@ -66,4 +68,4 @@ function RoleSelection(): React.ReactElement {
   );
 }
 
-export default withAuth(RoleSelection);
+export default withAuth(Searching);
