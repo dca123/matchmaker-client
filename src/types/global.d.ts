@@ -1,7 +1,7 @@
 declare module 'socket.io-mock' {
   class SocketMock {
-    socketClient = {
-      emit: Function,
+    socketClient: {
+      emit: (eventName: string) => void;
     };
   }
   export = SocketMock;
