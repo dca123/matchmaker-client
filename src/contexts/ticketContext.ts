@@ -1,9 +1,9 @@
 import { createContext, Dispatch, useContext, SetStateAction } from 'react';
 
 export class Ticket {
-  public ticketID: string | undefined = undefined;
+  public ticketID: string | undefined;
 
-  constructor(ticketID?: string) {
+  constructor(ticketID: string | undefined = undefined) {
     this.ticketID = ticketID;
   }
 }
