@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { io } from 'socket.io-client';
 import SocketMock from 'socket.io-mock';
 import { waitFor } from '@testing-library/react';
+import usesTicketContext from '../contexts/ticketContext';
 import {
   cleanup,
   renderWithTicket,
@@ -43,46 +44,14 @@ describe('/searching', () => {
     });
     afterEach(cleanup);
 
-    describe('uses ticket context', () => {
-      afterEach(() => sessionStorage.clear());
-      it('gets ticketID from context', () => {
-        const { result } = renderHook(() =>
-          useState<Ticket>(new Ticket('123456'))
-        );
-        renderWithTicket(Searching, result);
-        expect(result.current[0].ticketID).not.toBe(undefined);
-        expect(result.current[0].ticketID).toBe('123456');
-        sessionStorage.setItem('ticketID', '123ABC456');
-      });
-      it('gets ticketID from context even if sessionStorage has ticketID', () => {
-        const { result } = renderHook(() =>
-          useState<Ticket>(new Ticket('123456'))
-        );
-        sessionStorage.setItem('ticketID', '123ABC456');
-        renderWithTicket(Searching, result);
-        expect(result.current[0].ticketID).not.toBe(undefined);
-        expect(result.current[0].ticketID).toBe('123456');
-      });
-      it('sets ticketContext from sessionStorage if not in context', () => {
-        const { result } = renderHook(() => useState<Ticket>(new Ticket()));
-        sessionStorage.setItem('ticketID', '123ABC456');
-        renderWithTicket(Searching, result);
-        expect(result.current[0].ticketID).not.toBe(undefined);
-        expect(result.current[0].ticketID).toBe('123ABC456');
-      });
-      it('has undefined ticketID if not in context nor ticket', () => {
-        const { result } = renderHook(() => useState<Ticket>(new Ticket()));
-
-        renderWithTicket(Searching, result);
-        expect(result.current[0].ticketID).toBe(undefined);
-      });
-    });
+    usesTicketContext(Searching);
 
     describe('socket io connected', () => {
       it('sends connection request', async () => {
         render(<Searching />);
         await waitFor(() => expect(io).toHaveBeenCalled());
       });
+
       it('sends connection request with ticket ID', () => {
         const { result } = renderHook(() =>
           useState<Ticket>(new Ticket('123456'))
@@ -94,6 +63,7 @@ describe('/searching', () => {
           },
         });
       });
+
       it('disconnects on component unmount', async () => {
         const disconnectSpy = jest.spyOn(io(), 'disconnect');
         const { unmount } = render(<Searching />);
@@ -115,6 +85,7 @@ describe('/searching', () => {
             expect(screen.queryByText(/Game Found/)).not.toBeInTheDocument();
           });
         });
+
         it('disconnects from socket and pushes /lobby to router', async () => {
           const disconnectSpy = jest.spyOn(io(), 'disconnect');
           render(<Searching />);
@@ -124,6 +95,7 @@ describe('/searching', () => {
             expect(mockRouter.push).toHaveBeenNthCalledWith(1, '/lobby')
           );
         });
+
         it('disconnects from socket only once when component unmount', async () => {
           const disconnectSpy = jest.spyOn(io(), 'disconnect');
           const { unmount } = render(<Searching />);
