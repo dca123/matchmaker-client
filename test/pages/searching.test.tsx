@@ -15,7 +15,7 @@ import {
   screen,
   act,
 } from '../test-utils';
-import { loadingAuth, notAuth } from '../hoc/authentication.test';
+import { loadingAuth, notAuth } from '../hoc/authentication';
 
 jest.mock('next/router', () => ({
   useRouter() {

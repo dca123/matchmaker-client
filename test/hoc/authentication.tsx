@@ -1,4 +1,3 @@
-import Lobby from '@/pages/lobby';
 import {
   render,
   screen,
@@ -28,17 +27,3 @@ export const notAuth = (Component: React.FunctionComponent): void => {
     });
   });
 };
-
-jest.mock('next/router', () => ({
-  useRouter() {
-    return mockRouter;
-  },
-}));
-
-afterEach(cleanup);
-describe('Authentication', () => {
-  describe('for /Lobby', () => {
-    loadingAuth(Lobby);
-    notAuth(Lobby);
-  });
-});

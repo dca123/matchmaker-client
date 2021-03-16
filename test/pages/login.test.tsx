@@ -1,7 +1,7 @@
 import '../matchMedia';
 import Login from '@/pages/login';
 import { signIn } from 'next-auth/client';
-import { loadingAuth } from '../hoc/authentication.test';
+import { loadingAuth } from '../hoc/authentication';
 import {
   render,
   screen,
