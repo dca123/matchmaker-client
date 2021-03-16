@@ -34,7 +34,7 @@ const createTicket = async (
   router: NextRouter
 ): Promise<void> => {
   const returnData = await postData(session);
-  setTicket(returnData);
+  setTicket(new Ticket(returnData.ticketID));
   sessionStorage.setItem('ticketID', returnData.ticketID ?? '');
   router.push('/searching');
 };

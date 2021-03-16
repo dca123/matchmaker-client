@@ -16,11 +16,12 @@ function Lobby(): React.ReactElement {
   const [lobbyError, setLobbyError] = useState(false);
   const [radiantPlayers, setRadiantPlayers] = useState(defaultPlayerArray);
   const [direPlayers, setDirePlayers] = useState(defaultPlayerArray);
-  const { ticket } = useTicket();
+  const { ticket, setTicket } = useTicket();
 
   useEffect(() => {
     if (!ticket.ticketID) {
-      ticket.ticketID = sessionStorage.getItem('ticketID') ?? '';
+      ticket.ticketID = sessionStorage.getItem('ticketID') ?? undefined;
+      setTicket(ticket);
     }
 
     const socket = io(`${endpointsConfig.NEXT_PUBLIC_API_RMM}/lobby`, {
@@ -30,6 +31,7 @@ function Lobby(): React.ReactElement {
     });
     socket.on('playerList', (players: Player[]) => {
       setRadiantPlayers(players.slice(0, 5));
+      setDirePlayers(players.slice(5));
     });
     socket.on('lobbyState', (newProgress: number, newTitle: string) => {
       setTitle(newTitle);
@@ -40,6 +42,7 @@ function Lobby(): React.ReactElement {
       (newProgress: number, newTitle: string, newLobbyError: boolean) => {
         setTitle(newTitle);
         setProgress(newProgress);
+
         if (newLobbyError) {
           setLobbyError(newLobbyError);
         }
@@ -59,7 +62,7 @@ function Lobby(): React.ReactElement {
       // Disconnect socket on leaving page. Avoids memory leaks on reloads
       socket.disconnect();
     };
-  }, [ticket]);
+  }, [setTicket, ticket]);
   return (
     <>
       <Layout>

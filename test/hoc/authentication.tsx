@@ -7,7 +7,7 @@ import {
 } from '../test-utils';
 
 export const loadingAuth = (Component: React.FunctionComponent): void => {
-  describe('is loading authentication', () => {
+  describe('is loading session', () => {
     afterEach(cleanup);
     it('shows spinner', () => {
       mockAuthenticate({ sessionState: false, loading: true });

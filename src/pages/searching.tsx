@@ -8,44 +8,48 @@ import {
   Layout,
   Image,
 } from '@/components/CustomComponents';
-import { useTicket } from '@/contexts/ticketContext';
+import { Ticket, useTicket } from '@/contexts/ticketContext';
 import { io } from 'socket.io-client';
 import endpointsConfig from 'endpoints.config';
+import { useEffect } from 'react';
 
-function RoleSelection(): React.ReactElement {
+function Searching(): React.ReactElement {
   const router = useRouter();
-  const { ticket } = useTicket();
+  const { ticket, setTicket } = useTicket();
   const toast = useToast();
 
-  const ticketID = sessionStorage.getItem('ticketID');
+  useEffect(() => {
+    if (!ticket.ticketID) {
+      const ticketID = sessionStorage.getItem('ticketID') ?? undefined;
+      setTicket(new Ticket(ticketID));
+    }
 
-  let auth = {
-    ticket,
-  };
-  if (ticketID) {
-    auth = {
-      ticket: {
-        ticketID,
+    const socket = io(`${endpointsConfig.NEXT_PUBLIC_API_RMM}/searching`, {
+      auth: {
+        ticket,
       },
-    };
-  }
-  const socket = io(`${endpointsConfig.NEXT_PUBLIC_API_RMM}/searching`, {
-    auth,
-  });
-  socket.on('lobbyFound', () => {
-    toast({
-      title: 'Game Found !',
-      description: 'Please wait till we transition you to a lobby',
-      status: 'success',
-      position: 'top',
-      duration: 5000,
-      isClosable: true,
     });
-    setTimeout(() => {
-      router.push('/lobby');
-      socket.disconnect();
-    }, 1000);
-  });
+    socket.on('lobbyFound', () => {
+      toast({
+        title: 'Game Found !',
+        description: 'Please wait till we transition you to a lobby',
+        status: 'success',
+        position: 'top',
+        duration: 5000,
+        isClosable: true,
+      });
+      setTimeout(() => {
+        router.push('/lobby');
+        socket.disconnect();
+      }, 1000);
+    });
+
+    return () => {
+      if (socket.connected) {
+        socket.disconnect();
+      }
+    };
+  }, [router, setTicket, ticket, toast]);
   return (
     <Layout>
       <PageHeading>Finding Game</PageHeading>
@@ -64,4 +68,4 @@ function RoleSelection(): React.ReactElement {
   );
 }
 
-export default withAuth(RoleSelection);
+export default withAuth(Searching);
