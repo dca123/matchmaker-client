@@ -20,7 +20,7 @@ function Lobby(): React.ReactElement {
 
   useEffect(() => {
     if (!ticket.ticketID) {
-      ticket.ticketID = sessionStorage.getItem('ticketID') ?? '';
+      ticket.ticketID = sessionStorage.getItem('ticketID') ?? undefined;
       setTicket(ticket);
     }
 
@@ -31,6 +31,7 @@ function Lobby(): React.ReactElement {
     });
     socket.on('playerList', (players: Player[]) => {
       setRadiantPlayers(players.slice(0, 5));
+      setDirePlayers(players.slice(5));
     });
     socket.on('lobbyState', (newProgress: number, newTitle: string) => {
       setTitle(newTitle);
@@ -41,6 +42,7 @@ function Lobby(): React.ReactElement {
       (newProgress: number, newTitle: string, newLobbyError: boolean) => {
         setTitle(newTitle);
         setProgress(newProgress);
+
         if (newLobbyError) {
           setLobbyError(newLobbyError);
         }
