@@ -1,8 +1,8 @@
 diff --git a/node_modules/@types/next-auth/index.d.ts b/node_modules/@types/next-auth/index.d.ts
-index e3e3f9d..00773d6 100644
+index 63275e8..5cb9e14 100644
 --- a/node_modules/@types/next-auth/index.d.ts
 +++ b/node_modules/@types/next-auth/index.d.ts
-@@ -95,6 +95,8 @@ interface Session {
+@@ -97,6 +97,8 @@ interface Session {
  }
  
  interface User {

@@ -47,7 +47,7 @@ const createTicket = async (
   serverSelection: Record<string, boolean>
 ): Promise<void> => {
   const returnData = await postData(session, roleSelection, serverSelection);
-  setTicket(returnData);
+  setTicket(new Ticket(returnData.ticketID));
   sessionStorage.setItem('ticketID', returnData.ticketID ?? '');
   router.push('/searching');
 };
