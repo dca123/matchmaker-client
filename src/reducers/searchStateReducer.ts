@@ -8,7 +8,7 @@ type searchConfigType = {
 
 const defaultSearchConfig = {
   roleSelection: {
-    rockie: false,
+    player: false,
     coach: false,
   },
   serverSelection: {
