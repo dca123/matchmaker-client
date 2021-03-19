@@ -14,7 +14,11 @@ import {
   serverSelectionDictionary,
 } from '../reducers/searchStateReducer';
 
-const postData = async ({ id, steamID }: User): Promise<Ticket> => {
+const postData = async (
+  { id, steamID }: User,
+  roleSelection: Record<string, boolean>,
+  serverSelection: Record<string, boolean>
+): Promise<Ticket> => {
   const ticketID = await fetch(`${endpoint.NEXT_PUBLIC_API_RMM}/ticket`, {
     method: 'POST',
     mode: 'cors',
@@ -24,20 +28,30 @@ const postData = async ({ id, steamID }: User): Promise<Ticket> => {
     body: JSON.stringify({
       playerID: id,
       steamID,
+      serverSelection: Object.keys(serverSelection).filter(
+        (role) => serverSelection[role]
+      )[0],
+      roleSelection: Object.keys(roleSelection).filter(
+        (role) => roleSelection[role]
+      )[0],
     }),
   });
   return ticketID.json();
 };
+
 const createTicket = async (
   setTicket: Dispatch<SetStateAction<Ticket>>,
   session: User,
-  router: NextRouter
+  router: NextRouter,
+  roleSelection: Record<string, boolean>,
+  serverSelection: Record<string, boolean>
 ): Promise<void> => {
-  const returnData = await postData(session);
+  const returnData = await postData(session, roleSelection, serverSelection);
   setTicket(returnData);
   sessionStorage.setItem('ticketID', returnData.ticketID ?? '');
   router.push('/searching');
 };
+
 function Index({ session }: { session: Session }): React.ReactElement {
   const { setTicket } = useTicket();
   const router = useRouter();
@@ -64,7 +78,17 @@ function Index({ session }: { session: Session }): React.ReactElement {
           configTitle="Server"
         />
       </Flex>
-      <Button onClick={() => createTicket(setTicket, session.user, router)}>
+      <Button
+        onClick={() =>
+          createTicket(
+            setTicket,
+            session.user,
+            router,
+            roleSelection,
+            serverSelection
+          )
+        }
+      >
         Search
       </Button>
     </Layout>
