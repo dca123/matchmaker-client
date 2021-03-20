@@ -6,11 +6,11 @@ import { useState } from 'react';
 import { io } from 'socket.io-client';
 import SocketMock from 'socket.io-mock';
 import { waitFor } from '@testing-library/react';
+import { useSession } from '@/libs/session';
 import usesTicketContext from '../contexts/ticketContext';
 import {
   cleanup,
   renderWithTicket,
-  mockAuthenticate,
   mockRouter,
   render,
   screen,
@@ -24,14 +24,25 @@ jest.mock('next/router', () => ({
   },
 }));
 jest.mock('socket.io-client');
-
+jest.mock('@/libs/session', () => ({
+  useSession: jest.fn(),
+}));
 describe('/searching', () => {
   loadingAuth(Searching);
   notAuth(Searching);
   describe('is authenticated', () => {
     let socket: SocketMock;
 
-    beforeEach(() => mockAuthenticate());
+    beforeEach(() => {
+      (useSession as jest.Mock).mockImplementation(() => [
+        {
+          id: 'a',
+          steamID: 'Delta',
+          imageUrl: 'c',
+        },
+        false,
+      ]);
+    });
     beforeEach(() => {
       jest.useFakeTimers();
       socket = new SocketMock();

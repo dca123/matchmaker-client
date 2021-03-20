@@ -3,10 +3,9 @@ import { Flex } from '@chakra-ui/react';
 import SearchConfigCard from '@/layouts/SearchConfigCard';
 import { Layout, PageHeading, Button } from '@/components/CustomComponents';
 import withAuth from '@/hoc/withAuthentication';
-import { Session } from 'next-auth/client';
-import { User } from 'next-auth';
 import { Ticket, useTicket } from '@/contexts/ticketContext';
 import { NextRouter, useRouter } from 'next/router';
+import { User } from 'src/types/global';
 import endpoint from '../../endpoints.config';
 import {
   useSearchConfig,
@@ -52,7 +51,7 @@ const createTicket = async (
   router.push('/searching');
 };
 
-function Index({ session }: { session: Session }): React.ReactElement {
+function Index({ session }: { session: User }): React.ReactElement {
   const { setTicket } = useTicket();
   const router = useRouter();
   const [
@@ -82,7 +81,7 @@ function Index({ session }: { session: Session }): React.ReactElement {
         onClick={() =>
           createTicket(
             setTicket,
-            session.user,
+            session,
             router,
             roleSelection,
             serverSelection

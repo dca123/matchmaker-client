@@ -1,3 +1,4 @@
+import { signOut, useSession } from '@/libs/session';
 import {
   Avatar,
   useBreakpointValue,
@@ -6,19 +7,17 @@ import {
   MenuItem,
   MenuList,
 } from '@chakra-ui/react';
-import { signOut, useSession } from 'next-auth/client';
 
 export default function UserAvatar(): React.ReactElement {
   const [session] = useSession();
-  const avatarSize = useBreakpointValue({ base: 'md', md: 'xl' });
-
+  const avatarSize = useBreakpointValue(['md', 'xl']);
   if (session) {
     return (
       <Menu>
         <MenuButton
           as={Avatar}
           position="absolute"
-          src={session.user.image}
+          src={session.imageUrl}
           right={[8, 16]}
           top={[8, 16]}
           size={avatarSize}

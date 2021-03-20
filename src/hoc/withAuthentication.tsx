@@ -1,9 +1,10 @@
+import { useSession } from '@/libs/session';
 import { Spinner } from '@chakra-ui/react';
-import { Session, useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
+import { User } from 'src/types/global';
 
 export default function withAuth(
-  WrappedComponent: React.FunctionComponent<{ session: Session }>
+  WrappedComponent: React.FunctionComponent<{ session: User }>
 ): React.FunctionComponent {
   const RequiresAuthentication = (): React.ReactElement => {
     const [session, loading] = useSession();

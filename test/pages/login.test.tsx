@@ -1,28 +1,24 @@
 import '../matchMedia';
 import Login from '@/pages/login';
-import { signIn } from 'next-auth/client';
+import { signIn, useSession } from '@/libs/session';
 import { loadingAuth } from '../hoc/authentication';
-import {
-  render,
-  screen,
-  fireEvent,
-  cleanup,
-  mockAuthenticate,
-  mockRouter,
-} from '../test-utils';
+import { render, screen, fireEvent, cleanup, mockRouter } from '../test-utils';
 
-jest.mock('next-auth/client');
 jest.mock('next/router', () => ({
   useRouter() {
     return mockRouter;
   },
+}));
+jest.mock('@/libs/session', () => ({
+  useSession: jest.fn(),
+  signIn: jest.fn(),
 }));
 
 describe('/login', () => {
   afterEach(cleanup);
   describe('is not authenticated', () => {
     beforeEach(() => {
-      mockAuthenticate({ sessionState: false });
+      (useSession as jest.Mock).mockImplementation(() => [false, false]);
       render(<Login />);
     });
 
@@ -30,19 +26,25 @@ describe('/login', () => {
       expect(screen.getByRole('heading')).toHaveTextContent('Find Me a Lobby');
       expect(screen.getByAltText('Dota 2 Logo')).toBeInTheDocument();
       expect(screen.getByRole('button')).not.toHaveTextContent('Find Lobby');
-      expect(screen.getByRole('button')).toHaveTextContent('Login via Discord');
+      expect(screen.getByRole('button')).toHaveTextContent('Login via Steam');
     });
-    it('calls discord sign in when button is clicked', () => {
-      fireEvent.click(screen.getByText('Login via Discord'));
-      (signIn as jest.Mock).mockReturnValue(jest.fn);
-      expect(signIn).toHaveBeenCalledWith('discord', { callbackUrl: '/' });
+    it('calls steam sign in when button is clicked', () => {
+      fireEvent.click(screen.getByText('Login via Steam'));
+      expect(signIn).toHaveBeenCalled();
     });
   });
 
   loadingAuth(Login);
   describe('is authenticated', () => {
     it('pushes /index to the router', () => {
-      mockAuthenticate({ sessionState: true, loading: false });
+      (useSession as jest.Mock).mockImplementation(() => [
+        {
+          id: 'a',
+          steamID: 'Delta',
+          imageUrl: 'c',
+        },
+        false,
+      ]);
       render(<Login />);
       expect(mockRouter.replace).toBeCalledWith('/');
     });
