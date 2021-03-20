@@ -6,7 +6,6 @@ import {
   MenuItem,
   MenuList,
 } from '@chakra-ui/react';
-import { signOut, useSession } from 'next-auth/client';
 
 export default function UserAvatar(): React.ReactElement {
   const [session] = useSession();

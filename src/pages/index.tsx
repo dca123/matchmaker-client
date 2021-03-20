@@ -3,8 +3,6 @@ import { Flex } from '@chakra-ui/react';
 import SearchConfigCard from '@/layouts/SearchConfigCard';
 import { Layout, PageHeading, Button } from '@/components/CustomComponents';
 import withAuth from '@/hoc/withAuthentication';
-import { Session } from 'next-auth/client';
-import { User } from 'next-auth';
 import { Ticket, useTicket } from '@/contexts/ticketContext';
 import { NextRouter, useRouter } from 'next/router';
 import endpoint from '../../endpoints.config';

@@ -1,6 +1,5 @@
 import { Heading, Spinner } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { signIn, useSession } from 'next-auth/client';
 import {
   Button,
   GradientCard,

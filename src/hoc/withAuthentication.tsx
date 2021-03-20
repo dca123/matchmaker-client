@@ -1,5 +1,4 @@
 import { Spinner } from '@chakra-ui/react';
-import { Session, useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 
 export default function withAuth(
