@@ -4,11 +4,11 @@ import { waitFor } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import { useState } from 'react';
 import { Ticket } from '@/contexts/ticketContext';
+import { useSession } from '@/libs/session';
 import {
   screen,
   cleanup,
   render,
-  mockAuthenticate,
   mockRouter,
   renderWithTicket,
 } from '../test-utils';
@@ -19,14 +19,23 @@ jest.mock('next/router', () => ({
     return mockRouter;
   },
 }));
-
+jest.mock('@/libs/session', () => ({
+  useSession: jest.fn(),
+}));
 describe('/index', () => {
   loadingAuth(Index);
   notAuth(Index);
 
   describe('is authenticated', () => {
     beforeEach(() => {
-      mockAuthenticate();
+      (useSession as jest.Mock).mockImplementation(() => [
+        {
+          id: 'a',
+          steamID: 'Delta',
+          imageUrl: 'c',
+        },
+        false,
+      ]);
     });
 
     afterEach(cleanup);

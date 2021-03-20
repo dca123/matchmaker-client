@@ -1,6 +1,5 @@
 import { render, RenderResult } from '@testing-library/react';
 import { NextRouter } from 'next/router';
-import client, { Session } from 'next-auth/client';
 import { Ticket, TicketProvider } from '@/contexts/ticketContext';
 import { Dispatch, SetStateAction } from 'react';
 import { RenderResult as ReactHookRenderResult } from '@testing-library/react-hooks';
@@ -26,23 +25,6 @@ export const mockRouter: NextRouter & { isLocaleDomain: boolean } = {
   isReady: true,
   isLocaleDomain: false,
   isPreview: false,
-};
-export const mockAuthenticate = ({
-  sessionState = true,
-  loading = false,
-}: {
-  sessionState?: boolean;
-  loading?: boolean;
-} = {}): void => {
-  if (sessionState === false) {
-    client.useSession = jest.fn().mockReturnValueOnce([false, loading]);
-    return;
-  }
-  const mockSession: Session = {
-    expires: '1',
-    user: { email: 'a', name: 'Delta', image: 'c' },
-  };
-  client.useSession = jest.fn().mockReturnValueOnce([mockSession, false]);
 };
 export * from '@testing-library/react';
 

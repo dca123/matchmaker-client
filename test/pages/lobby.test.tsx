@@ -5,12 +5,12 @@ import { useState } from 'react';
 import { io } from 'socket.io-client';
 import SocketMock from 'socket.io-mock';
 import { Player } from '@/layouts/TeamCard';
+import { useSession } from '@/libs/session';
 import usesTicketContext from '../contexts/ticketContext';
 import { loadingAuth, notAuth } from '../hoc/authentication';
 import {
   cleanup,
   mockRouter,
-  mockAuthenticate,
   render,
   renderWithTicket,
   waitFor,
@@ -39,6 +39,9 @@ jest.mock('next/router', () => ({
     return mockRouter;
   },
 }));
+jest.mock('@/libs/session', () => ({
+  useSession: jest.fn(),
+}));
 jest.mock('socket.io-client');
 
 describe('/lobby', () => {
@@ -47,7 +50,16 @@ describe('/lobby', () => {
   describe('is authenticated', () => {
     let socket: SocketMock;
 
-    beforeEach(() => mockAuthenticate());
+    beforeEach(() => {
+      (useSession as jest.Mock).mockImplementation(() => [
+        {
+          id: 'a',
+          steamID: 'Delta',
+          imageUrl: 'c',
+        },
+        false,
+      ]);
+    });
     beforeEach(() => {
       socket = new SocketMock();
       (io as jest.Mock).mockReturnValue(socket);
