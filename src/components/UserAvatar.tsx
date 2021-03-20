@@ -1,3 +1,4 @@
+import { signOut, useSession } from '@/libs/session';
 import {
   Avatar,
   useBreakpointValue,
@@ -16,7 +17,7 @@ export default function UserAvatar(): React.ReactElement {
         <MenuButton
           as={Avatar}
           position="absolute"
-          src={session.user.image}
+          src={session.imageUrl}
           right={[8, 16]}
           top={[8, 16]}
           size={avatarSize}

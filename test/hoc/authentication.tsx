@@ -1,16 +1,12 @@
-import {
-  render,
-  screen,
-  cleanup,
-  mockAuthenticate,
-  mockRouter,
-} from '../test-utils';
+import { useSession } from '@/libs/session';
+import { render, screen, mockRouter } from '../test-utils';
 
 export const loadingAuth = (Component: React.FunctionComponent): void => {
   describe('is loading session', () => {
-    afterEach(cleanup);
+    beforeEach(() =>
+      (useSession as jest.Mock).mockImplementation(() => [undefined, true])
+    );
     it('shows spinner', () => {
-      mockAuthenticate({ sessionState: false, loading: true });
       render(<Component />);
       expect(screen.getByText('Loading...')).toBeInTheDocument();
     });
@@ -19,9 +15,10 @@ export const loadingAuth = (Component: React.FunctionComponent): void => {
 
 export const notAuth = (Component: React.FunctionComponent): void => {
   describe('is not authenticated', () => {
-    afterEach(cleanup);
+    beforeEach(() =>
+      (useSession as jest.Mock).mockImplementation(() => [undefined, false])
+    );
     it('pushes index to router', () => {
-      mockAuthenticate({ sessionState: false });
       render(<Component />);
       expect(mockRouter.replace).toHaveBeenCalledWith('/login');
     });

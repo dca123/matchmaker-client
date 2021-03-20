@@ -6,6 +6,7 @@ import {
   Layout,
   Image,
 } from '@/components/CustomComponents';
+import { signIn, useSession } from '@/libs/session';
 
 export default function Login(): React.ReactElement {
   const router = useRouter();
@@ -28,11 +29,8 @@ export default function Login(): React.ReactElement {
           src="/dotaImg.png"
         />
         {!session && (
-          <Button
-            fontSize={['sm', 'lg']}
-            onClick={() => signIn('discord', { callbackUrl: '/' })}
-          >
-            Login via Discord
+          <Button fontSize={['sm', 'lg']} onClick={signIn}>
+            Login via Steam
           </Button>
         )}
       </GradientCard>
