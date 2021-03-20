@@ -24,7 +24,9 @@
       "@/pages/*": ["./src/pages/*"],
       "@/hoc/*": ["./src/hoc/*"],
       "@/contexts/*": ["./src/contexts/*"],
-      "@/reducers/*": ["./src/reducers/*"]
+      "@/reducers/*": ["./src/reducers/*"],
+      "@/libs/*": ["./src/libs/*"],
+      "@/middlewares/*": ["./src/middlewares/*"]
     }
   },
   "exclude": ["node_modules"],

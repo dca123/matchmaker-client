@@ -12,6 +12,8 @@ const config: Config.InitialOptions = {
     '^@/hoc(.*)$': '<rootDir>/src/hoc$1',
     '^@/contexts(.*)$': '<rootDir>/src/contexts$1',
     '^@/reducers(.*)$': '<rootDir>/src/reducers$1',
+    '^@/middlewares(.*)$': '<rootDir>/src/middlewares$1',
+    '^@/libs(.*)$': '<rootDir>/src/libs$1',
     'endpoints.config': '<rootDir>/endpoints.config.ts',
   },
   collectCoverageFrom: ['src/*/*.{ts,tsx}'],
