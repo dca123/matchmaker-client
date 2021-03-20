@@ -9,8 +9,7 @@ import {
 
 export default function UserAvatar(): React.ReactElement {
   const [session] = useSession();
-  const avatarSize = useBreakpointValue({ base: 'md', md: 'xl' });
-
+  const avatarSize = useBreakpointValue(['md', 'xl']);
   if (session) {
     return (
       <Menu>
