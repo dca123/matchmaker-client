@@ -15,7 +15,8 @@ const strategy = new Strategy(
     done: (error: null, user: Partial<User>) => void
   ) => {
     const newUser = {
-      steamid: profile.id,
+      id: profile.id,
+      steamID: profile.id,
       name: profile.displayName,
       imageUrl: profile.photos[2].value,
     };
